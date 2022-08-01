@@ -8,7 +8,7 @@ int main()
 	// Memory
 	en::flag_memory_debug();
 
-	// File Stuff
+	// File Setup
 	en::setPath("../Assets");
 
 	// Init
