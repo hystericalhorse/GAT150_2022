@@ -1,6 +1,6 @@
 #ifndef _INPUT_SYSTEM_H
 #define _INPUT_SYSTEM_H
-#include "../Math/Vector2.h"
+#include "Math/Vector2.h"
 #include <cstdint>
 #include <vector>
 #include <array>

@@ -1,6 +1,6 @@
 #include "Texture.h"
 #include "Renderer.h"
-
+#include "Core/Logger.h"
 #include <SDL_image.h>
 
 namespace en
@@ -10,10 +10,12 @@ namespace en
 		if (_texture != nullptr) SDL_DestroyTexture(_texture);
 	}
 
-	bool Texture::Init(Renderer& renderer, const std::string& filename)
+	bool Texture::Create(Renderer& renderer, const std::string& filename)
 	{
 		SDL_Surface* _surface = IMG_Load(filename.c_str());
+		if (_surface == nullptr) { LOG(SDL_GetError()); return false; }
 		_texture = SDL_CreateTextureFromSurface(renderer._renderer, _surface);
+		if (_texture == nullptr) { LOG(SDL_GetError()); return false; }
 		SDL_FreeSurface(_surface);
 
 		return true;

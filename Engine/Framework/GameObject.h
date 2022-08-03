@@ -1,6 +1,6 @@
 #ifndef _GAME_OBJECT_H
 #define _GAME_OBJECT_H
-#include "../Math/Transform.h"
+#include "Math/Transform.h"
 
 namespace en
 {

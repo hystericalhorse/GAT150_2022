@@ -2,7 +2,7 @@
 #define _DRAWABLE_H
 
 #include "GameObject.h"
-#include "../Renderer/Model.h"
+#include "Renderer/Model.h"
 
 namespace en
 {

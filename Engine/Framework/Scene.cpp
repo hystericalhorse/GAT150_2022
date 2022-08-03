@@ -1,5 +1,5 @@
 #include "Scene.h"
-#include "../Renderer/Renderer.h"
+#include "Renderer/Renderer.h"
 #include "Actor.h"
 
 #include <iostream>

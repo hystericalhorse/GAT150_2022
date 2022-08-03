@@ -1,7 +1,7 @@
 #ifndef _BACKGROUND_H
 #define _BACKGROUND_H
 
-#include "../Framework/Drawable.h"
+#include "Framework/Drawable.h"
 
 #include <vector>
 

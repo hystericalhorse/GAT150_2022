@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "Core/Logger.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 
@@ -24,12 +25,14 @@ namespace en
 		Vector2 size = texture->getSize();
 
 		SDL_Rect dest;
+		// Destination Position
 		dest.x = (int) position.x;
-			dest.y = (int) position.x;
-			dest.w = (int) size.x;
-			dest.h = (int) size.y;
+		dest.y = (int) position.x;
+		// Scale
+		dest.w = (int) size.x;
+		dest.h = (int) size.y;
 
-			SDL_RenderCopyEx(_renderer, texture -> _texture, nullptr, &dest, angle, nullptr, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(_renderer, texture -> _texture, nullptr, &dest, angle, nullptr, SDL_FLIP_NONE);
 	}
 
 	void Renderer::newWindow(const char* title, int width, int height)

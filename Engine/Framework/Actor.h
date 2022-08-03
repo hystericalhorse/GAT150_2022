@@ -1,7 +1,7 @@
 #ifndef _ACTOR_H
 #define _ACTOR_H
 #include "GameObject.h"
-#include "../Renderer/Model.h"
+#include "Renderer/Model.h"
 #include <iostream>
 
 namespace en

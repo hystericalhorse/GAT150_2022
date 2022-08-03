@@ -1,4 +1,5 @@
 #include "AudioSys.h"
+#include "Core/Logger.h"
 #include <fmod.hpp>
 #include <iterator>
 
@@ -36,6 +37,7 @@ namespace en
 		{
 			FMOD::Sound* sound = nullptr;
 			_fmod_system->createSound(filename.c_str(), FMOD_DEFAULT, 0, &sound);
+			if (sound == nullptr) { LOG("ERROR: there was a problem loading sound %s", filename.c_str()); return; }
 			_sounds[name] = sound;
 		}
 	}
@@ -43,6 +45,7 @@ namespace en
 	void AudioSys::playAudio(const std::string& name, bool loop)
 	{
 		auto iter = _sounds.find(name);
+		if (iter == _sounds.end()) { LOG("ERROR: could not find audio %s", name.c_str()); return; }
 		if (iter != _sounds.end())
 		{
 			FMOD::Sound* sound = iter->second;

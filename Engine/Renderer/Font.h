@@ -3,7 +3,7 @@
 
 #include <string>
 
-class _TTF_Font;
+struct _TTF_Font;
 
 namespace en
 {
