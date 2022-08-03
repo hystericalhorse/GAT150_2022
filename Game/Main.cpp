@@ -3,8 +3,6 @@
 using namespace std;
 int main()
 {
-	cout << "hello, world." << endl;
-
 	// Memory
 	en::flag_memory_debug();
 
@@ -12,40 +10,29 @@ int main()
 	en::setPath("../Assets");
 
 	// Init
-	en::__renderer.Init();
-	en::__inputsys.Init();
-	en::__audiosys.Init();
+	en::Init();
 
 	// Window
 	en::__renderer.newWindow("Game", 800, 600);
 	en::__renderer.setClearColor(en::Color(0, 0, 0, 255));
 
-	// Image
-	std::shared_ptr<en::Texture> texture = std::make_shared<en::Texture>();
-	texture->Init(en::__renderer, "image.png");
-
 	bool quit = false;
 	while (!quit)
 	{
 		// Update
-
-		en::__audiosys.Update();
-		en::__inputsys.Update();
-		en::__time.tick();
+		en::Update();
 
 		// Global Checks
-
 		if (en::__inputsys.keyPressed(en::key_escape)) quit = true;
 
 		// Draw
 		en::__renderer.beginFrame();
 
-		en::__renderer.Draw(texture, { 100, 50 }, 0);
+		// Draw Here
 
 		en::__renderer.endFrame();
 	}
-	
-	en::__audiosys.Shutdown();
-	en::__renderer.Shutdown();
-	en::__inputsys.Shutdown();
+
+	// System Shutdown
+	en::Shutdown();
 }

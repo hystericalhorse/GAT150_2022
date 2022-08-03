@@ -2,7 +2,7 @@
 
 namespace en
 {
-	void Time::tick()
+	void Time::Tick()
 	{
 		clock_duration duration = clock::now() - _starttimepoint;
 		time = duration.count() / (float) clock_duration::period::den;

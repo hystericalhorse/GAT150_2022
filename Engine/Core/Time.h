@@ -22,7 +22,7 @@ namespace en
 		{}
 		~Time() = default;
 
-		void tick();
+		void Tick();
 		void reset()
 		{
 			_starttimepoint = clock::now();

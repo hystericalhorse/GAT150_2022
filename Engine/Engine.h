@@ -27,6 +27,10 @@
 
 namespace en
 {
+	void Init();
+	void Update();
+	void Shutdown();
+
 	extern InputSystem __inputsys;
 	extern Time __time;
 	extern Renderer __renderer;
