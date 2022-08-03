@@ -11,6 +11,7 @@
 #include "Math/Random.h"
 
 #include "Core/Memory.h"
+#include "Core/Logger.h"
 #include "Core/File.h"
 #include "Core/Time.h"
 
@@ -20,7 +21,6 @@
 
 #include "Audio/AudioSys.h"
 
-#include <iostream>
 #include <memory>
 #include <vector>
 #include <list>

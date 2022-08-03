@@ -1,7 +1,7 @@
 #ifndef _TEXTURE_H
 #define _TEXTURE_H
 
-#include "../Math/Vector2.h"
+#include "Math/Vector2.h"
 #include <string>
 
 struct SDL_Texture;

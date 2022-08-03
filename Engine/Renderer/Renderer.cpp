@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include "Core/Logger.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 
