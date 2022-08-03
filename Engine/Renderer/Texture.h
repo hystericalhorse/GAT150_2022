@@ -16,7 +16,7 @@ namespace en
 		Texture() = default;
 		~Texture();
 
-		bool Init(Renderer& renderer, const std::string& filename);
+		bool Create(Renderer& renderer, const std::string& filename);
 
 		Vector2 getSize() const;
 
