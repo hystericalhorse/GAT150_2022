@@ -3,7 +3,7 @@
 
 #include <string>
 
-class SDL_Texture;
+struct SDL_Texture;
 
 namespace en
 {

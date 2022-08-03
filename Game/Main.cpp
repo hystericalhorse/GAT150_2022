@@ -3,18 +3,14 @@
 using namespace std;
 int main()
 {
-	cout << "hello, world." << endl;
-
 	// Memory
 	en::flag_memory_debug();
 
-	// File Stuff
+	// File Setup
 	en::setPath("../Assets");
 
 	// Init
-	en::__renderer.Init();
-	en::__inputsys.Init();
-	en::__audiosys.Init();
+	en::Init();
 
 	// Window
 	en::__renderer.newWindow("Game", 800, 600);
@@ -24,24 +20,19 @@ int main()
 	while (!quit)
 	{
 		// Update
-
-		en::__audiosys.Update();
-		en::__inputsys.Update();
-		en::__time.tick();
+		en::Update();
 
 		// Global Checks
-
 		if (en::__inputsys.keyPressed(en::key_escape)) quit = true;
 
 		// Draw
 		en::__renderer.beginFrame();
 
-
+		// Draw Here
 
 		en::__renderer.endFrame();
 	}
 
-	en::__audiosys.Shutdown();
-	en::__renderer.Shutdown();
-	en::__inputsys.Shutdown();
+	// System Shutdown
+	en::Shutdown();
 }
