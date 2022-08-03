@@ -20,6 +20,10 @@ int main()
 	en::__renderer.newWindow("Game", 800, 600);
 	en::__renderer.setClearColor(en::Color(0, 0, 0, 255));
 
+	// Image
+	std::shared_ptr<en::Texture> texture = std::make_shared<en::Texture>();
+	texture->Init(en::__renderer, "image.png");
+
 	bool quit = false;
 	while (!quit)
 	{
@@ -36,11 +40,11 @@ int main()
 		// Draw
 		en::__renderer.beginFrame();
 
-
+		en::__renderer.Draw(texture, { 100, 50 }, 0);
 
 		en::__renderer.endFrame();
 	}
-
+	
 	en::__audiosys.Shutdown();
 	en::__renderer.Shutdown();
 	en::__inputsys.Shutdown();

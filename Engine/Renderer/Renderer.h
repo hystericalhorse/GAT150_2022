@@ -2,6 +2,7 @@
 #define _RENDERER_H
 #include "../Math/Vector2.h"
 #include "../Math/Color.h"
+#include "Texture.h"
 
 struct SDL_Renderer; // Forward Declaration
 struct SDL_Window; // Forward Declaration
@@ -16,6 +17,8 @@ namespace en
 
 		void Init();
 		void Shutdown();
+
+		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0);
 
 		void newWindow(const char* title, int width, int height);
 		void beginFrame();
@@ -36,10 +39,13 @@ namespace en
 		int get_window_height() { return height; }
 
 		friend class Text;
+		friend class Texture;
 
-	private:
 		SDL_Renderer* _renderer{ nullptr };
 		SDL_Window* _window{ nullptr };
+
+	private:
+		
 
 		int width = 0;
 		int height = 0;

@@ -52,8 +52,8 @@ namespace en
 		{};
 
 		Vector2 _mousepos {0, 0};
-		std::array<uint8_t, 3> mousebtnstate;
-		std::array<uint8_t, 3> prev_mousebtnstate;
+		std::array<uint8_t, 3> mousebtnstate{};
+		std::array<uint8_t, 3> prev_mousebtnstate{};
 	};
 
 	extern const uint32_t key_space;
