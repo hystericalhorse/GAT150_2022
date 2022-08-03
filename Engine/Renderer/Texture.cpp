@@ -13,9 +13,9 @@ namespace en
 	bool Texture::Create(Renderer& renderer, const std::string& filename)
 	{
 		SDL_Surface* _surface = IMG_Load(filename.c_str());
-		if (_surface == nullptr) en::__logger.Log(SDL_GetError());
+		if (_surface == nullptr) { en::__logger.Log(SDL_GetError()); return false; }
 		_texture = SDL_CreateTextureFromSurface(renderer._renderer, _surface);
-		if (_texture == nullptr) en::__logger.Log(SDL_GetError());
+		if (_texture == nullptr) { en::__logger.Log(SDL_GetError()); return false; }
 		SDL_FreeSurface(_surface);
 
 		return true;

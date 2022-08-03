@@ -16,8 +16,6 @@ int main()
 	en::__renderer.newWindow("Game", 800, 600);
 	en::__renderer.setClearColor(en::Color(0, 0, 0, 255));
 
-	// Image
-
 	bool quit = false;
 	while (!quit)
 	{
