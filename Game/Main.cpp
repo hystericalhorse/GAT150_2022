@@ -3,8 +3,6 @@
 using namespace std;
 int main()
 {
-	const int i = 69;
-
 	// Memory
 	en::flag_memory_debug();
 
