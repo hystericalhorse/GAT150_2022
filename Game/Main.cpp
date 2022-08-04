@@ -3,6 +3,8 @@
 using namespace std;
 int main()
 {
+	const int i = 69;
+
 	// Memory
 	en::flag_memory_debug();
 
@@ -18,7 +20,7 @@ int main()
 
 	// Image
 	shared_ptr<en::Texture> texture = make_unique<en::Texture>();
-	texture->Create(en::__renderer, "image2.png");
+	texture->Create(en::__renderer, "image.png");
 
 	// Variables
 	float angle = 0.0f;
@@ -28,7 +30,7 @@ int main()
 	{
 		// Update
 		en::Update();
-		angle += 15 * en::__time.ci_time;
+		angle += 30 * en::__time.ci_time;
 
 		// Global Checks
 		if (en::__inputsys.keyPressed(en::key_escape)) quit = true;
@@ -37,7 +39,7 @@ int main()
 		en::__renderer.beginFrame();
 
 		// Draw Heres
-		en::__renderer.Draw(texture, { 400, 300 }, angle, {0.5, 0.5});
+		en::__renderer.Draw(texture, { 400, 300 }, angle, { 0.5, 0.5 });
 
 		en::__renderer.endFrame();
 	}

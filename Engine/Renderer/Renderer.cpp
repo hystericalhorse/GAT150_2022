@@ -1,5 +1,6 @@
 #include "Renderer.h"
 #include "Core/Logger.h"
+#include "Math/Transform.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 
@@ -20,22 +21,44 @@ namespace en
 		TTF_Quit();
 	}
 
-	void Renderer::Draw(std::shared_ptr<en::Texture> texture, const Vector2& position, float angle, const Vector2& scale)
+	void Renderer::Draw(std::shared_ptr<en::Texture> texture, const Vector2& position, float angle, const Vector2& scale, const Vector2& regist)
 	{
 		Vector2 size = texture->getSize();
 		size = size * scale;
 
-		Vector2 pos = position - (size * 0.5);
+		Vector2 origin = size * regist;
+		Vector2 pos = position - origin;
+		const SDL_Point center {(int) origin.x, (int) origin.y};
 
 		SDL_Rect dest;
 		// Destination Position
 		dest.x = (int) pos.x;
-		dest.y = (int) pos.x;
+		dest.y = (int) pos.y;
 		// Scale
 		dest.w = (int) size.x;
 		dest.h = (int) size.y;
 
-		SDL_RenderCopyEx(_renderer, texture -> _texture, nullptr, &dest, angle, nullptr, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(_renderer, texture -> _texture, nullptr, &dest, angle, &center, SDL_FLIP_NONE);
+	}
+
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& regist)
+	{
+		Vector2 size = texture->getSize();
+		size = size * transform.scale;
+
+		Vector2 origin = size * regist;
+		Vector2 pos = transform.position - origin;
+		const SDL_Point center{ (int) origin.x, (int) origin.y };
+
+		SDL_Rect dest;
+		// Destination Position
+		dest.x = (int)pos.x;
+		dest.y = (int)pos.y;
+		// Scale
+		dest.w = (int)size.x;
+		dest.h = (int)size.y;
+
+		SDL_RenderCopyEx(_renderer, texture->_texture, nullptr, &dest, transform.rotation, &center, SDL_FLIP_NONE);
 	}
 
 	void Renderer::newWindow(const char* title, int width, int height)
