@@ -1,14 +1,19 @@
 #ifndef _RENDERER_H
 #define _RENDERER_H
-#include "../Math/Vector2.h"
-#include "../Math/Color.h"
+
 #include "Texture.h"
+#include "Math/Vector2.h"
+#include "Math/Color.h"
 
 struct SDL_Renderer; // Forward Declaration
 struct SDL_Window; // Forward Declaration
 
 namespace en
 {
+	struct Transform;
+	struct Vector2;
+	struct Color;
+
 	class Renderer
 	{
 	public:
@@ -18,7 +23,8 @@ namespace en
 		void Init();
 		void Shutdown();
 
-		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0);
+		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0, const Vector2& scale = Vector2{1, 1}, const Vector2& regist = Vector2{ .5, .5 });
+		void Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& regist = Vector2{ .5, .5 });
 
 		void newWindow(const char* title, int width, int height);
 		void beginFrame();
@@ -45,8 +51,6 @@ namespace en
 		SDL_Window* _window{ nullptr };
 
 	private:
-		
-
 		int width = 0;
 		int height = 0;
 

@@ -20,6 +20,11 @@ namespace en
 			this->x = (float) x;
 			this->y = (float) y;
 		}
+		Vector2(double x, double y)
+		{
+			this->x = (float)x;
+			this->y = (float)y;
+		}
 
 		void set(float x, float y) { this->x = x; this->y = y; }
 
@@ -81,22 +86,17 @@ namespace en
 		friend std::istream& operator >> (std::istream& stream, Vector2& v);
 
 		float x, y;
+
+		static const Vector2 one;
+		static const Vector2 zero;
+
+		static const Vector2 right;
+		static const Vector2 up;
+		static const Vector2 left;
+		static const Vector2 down;
 	};
 
-	inline std::istream& operator >> (std::istream& stream, Vector2& v)
-	{
-		std::string line;
-		std::getline(stream, line);
-
-		std::string x = line.substr(line.find("{") + 1, line.find(",") - (line.find("{") + 1));
-		std::string y = line.substr(line.find(",") + 1, line.find("}") - (line.find(",") + 1));
-
-		v.x = std::stof(x);
-		v.y = std::stof(y);
-
-		return stream;
-	}
-
+	std::istream& operator >> (std::istream& stream, Vector2& v);
 }
 
 #endif // _VECTOR2_H

@@ -179,7 +179,9 @@
     <ClCompile Include="Framework\Drawable.cpp" />
     <ClCompile Include="Framework\Scene.cpp" />
     <ClCompile Include="Input\InputSystem.cpp" />
+    <ClCompile Include="Math\Color.cpp" />
     <ClCompile Include="Math\MathUtils.cpp" />
+    <ClCompile Include="Math\Vector2.cpp" />
     <ClCompile Include="Renderer\Font.cpp" />
     <ClCompile Include="Renderer\Texture.cpp" />
     <ClCompile Include="Renderer\Model.cpp" />

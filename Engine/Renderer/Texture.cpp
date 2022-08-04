@@ -23,7 +23,7 @@ namespace en
 
 	en::Vector2 Texture::getSize() const
 	{
-		SDL_Point point;
+		SDL_Point point{};
 		SDL_QueryTexture(_texture, nullptr, nullptr, &point.x, &point.y);
 
 		return Vector2{ point.x , point.y };
