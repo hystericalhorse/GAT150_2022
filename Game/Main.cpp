@@ -14,7 +14,7 @@ int main()
 
 	// Window
 	en::__renderer.newWindow("Game", 800, 600);
-	en::__renderer.setClearColor(en::Color(0, 0, 0, 255));
+	en::__renderer.setClearColor(en::black);
 
 	// Image
 	shared_ptr<en::Texture> texture = make_unique<en::Texture>();
