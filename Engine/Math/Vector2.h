@@ -20,6 +20,11 @@ namespace en
 			this->x = (float) x;
 			this->y = (float) y;
 		}
+		Vector2(double x, double y)
+		{
+			this->x = (float)x;
+			this->y = (float)y;
+		}
 
 		void set(float x, float y) { this->x = x; this->y = y; }
 

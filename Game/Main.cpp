@@ -16,6 +16,10 @@ int main()
 	en::__renderer.newWindow("Game", 800, 600);
 	en::__renderer.setClearColor(en::Color(0, 0, 0, 255));
 
+	// Image
+	shared_ptr<en::Texture> texture = make_unique<en::Texture>();
+	texture->Create(en::__renderer, "image2.png");
+
 	// Variables
 	float angle = 0.0f;
 
@@ -24,6 +28,7 @@ int main()
 	{
 		// Update
 		en::Update();
+		angle += 15 * en::__time.ci_time;
 
 		// Global Checks
 		if (en::__inputsys.keyPressed(en::key_escape)) quit = true;
@@ -31,7 +36,8 @@ int main()
 		// Draw
 		en::__renderer.beginFrame();
 
-		// Draw Here
+		// Draw Heres
+		en::__renderer.Draw(texture, { 400, 300 }, angle, {0.5, 0.5});
 
 		en::__renderer.endFrame();
 	}

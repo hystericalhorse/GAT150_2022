@@ -25,10 +25,12 @@ namespace en
 		Vector2 size = texture->getSize();
 		size = size * scale;
 
+		Vector2 pos = position - (size * 0.5);
+
 		SDL_Rect dest;
 		// Destination Position
-		dest.x = (int) position.x;
-		dest.y = (int) position.x;
+		dest.x = (int) pos.x;
+		dest.y = (int) pos.x;
 		// Scale
 		dest.w = (int) size.x;
 		dest.h = (int) size.y;
