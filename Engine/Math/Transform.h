@@ -7,12 +7,12 @@ namespace en
 	struct Transform
 	{
 		Transform() = default;
-		Transform(const Vector2& pos, float rot, float sca) :
+		Transform(const Vector2& pos, float rot, Vector2 sca) :
 			position{pos}, rotation{rot}, scale{sca}
 		{}
 		Vector2 position;
+		Vector2 scale {1, 1};
 		float rotation = 0.0f;
-		float scale = 1.0f;
 	};
 }
 

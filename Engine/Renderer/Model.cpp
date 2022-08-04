@@ -19,7 +19,7 @@ namespace en
 		_color = color;
 	}
 
-	void Model::draw(Renderer& renderer, const Vector2& position, float& angle, float& scale)
+	void Model::draw(Renderer& renderer, const Vector2& position, float& angle, const Vector2& scale)
 	{
 		if (_points.size() == 1)
 		{

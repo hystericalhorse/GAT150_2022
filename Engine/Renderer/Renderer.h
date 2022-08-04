@@ -18,7 +18,7 @@ namespace en
 		void Init();
 		void Shutdown();
 
-		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0);
+		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0, const Vector2& scale = Vector2{1, 1});
 
 		void newWindow(const char* title, int width, int height);
 		void beginFrame();

@@ -20,9 +20,10 @@ namespace en
 		TTF_Quit();
 	}
 
-	void Renderer::Draw(std::shared_ptr<en::Texture> texture, const Vector2& position, float angle)
+	void Renderer::Draw(std::shared_ptr<en::Texture> texture, const Vector2& position, float angle, const Vector2& scale)
 	{
 		Vector2 size = texture->getSize();
+		size = size * scale;
 
 		SDL_Rect dest;
 		// Destination Position

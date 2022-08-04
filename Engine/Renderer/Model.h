@@ -17,7 +17,7 @@ namespace en
 		Model(const std::string& filename, const en::Color& color);
 		~Model() = default;
 
-		void draw(Renderer& renderer, const Vector2& position, float& angle, float& scale);
+		void draw(Renderer& renderer, const Vector2& position, float& angle, const Vector2& scale = Vector2{1, 1});
 		void load(const std::string& filename);
 		float find_radius();
 
