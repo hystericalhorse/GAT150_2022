@@ -36,7 +36,7 @@ int main()
 		// Draw
 		en::__renderer.beginFrame();
 
-		// Draw Heres
+		// Draw Here
 		en::__renderer.Draw(texture, { 400, 300 }, angle, { 0.5, 0.5 });
 
 		en::__renderer.endFrame();
