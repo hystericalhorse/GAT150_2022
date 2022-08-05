@@ -22,6 +22,7 @@
 #include "Framework/Game.h"
 
 #include "Components/PlayerComponent.h"
+#include "Components/SpriteComponent.h"
 
 #include <memory>
 #include <vector>

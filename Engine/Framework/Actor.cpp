@@ -1,4 +1,5 @@
 #include "Actor.h"
+#include "Components/RenderComponent.h"
 
 namespace en
 {
@@ -20,7 +21,11 @@ namespace en
 	{
 		for (auto& component : _components)
 		{
-
+			auto r = dynamic_cast<RenderComponent*>(component.get());
+			if (r)
+			{
+				r->Draw(renderer);
+			}
 		}
 	}
 }

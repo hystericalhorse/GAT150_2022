@@ -29,6 +29,8 @@ namespace en
 
 		virtual void OnCollision(Actor* other) {}
 		float get_radius() { return 0; /*_model.get_radius() * std::max(_transform.scale.x, _transform.scale.y);*/ }
+
+		Transform& _Transform() { return this->_transform; }
 		
 		friend class Scene;
 	protected:
