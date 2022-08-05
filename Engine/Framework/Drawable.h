@@ -27,6 +27,7 @@ namespace en
 		DrawableType _drawabletype;
 
 		en::Model _model;
+		Transform _transform;
 
 		float _r = 0.0;
 		en::Color _color;

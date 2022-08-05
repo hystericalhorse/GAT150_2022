@@ -2,22 +2,25 @@
 
 namespace en
 {
-	Drawable::Drawable(const Transform& transform, const Model& model) : GameObject(transform)
+	Drawable::Drawable(const Transform& transform, const Model& model)
 	{
+		_transform = transform;
 		_drawabletype = DrawableType::MODEL;
 
 		_model = model;
 	}
 
-	Drawable::Drawable(const Transform& transform, Color& color) : GameObject(transform)
+	Drawable::Drawable(const Transform& transform, Color& color)
 	{
+		_transform = transform;
 		_drawabletype = DrawableType::POINT;
 
 		_color = color;
 	}
 
-	Drawable::Drawable(const Transform& transform, float radius, Color& color) : GameObject(transform)
+	Drawable::Drawable(const Transform& transform, float radius, Color& color)
 	{
+		_transform = transform;
 		_drawabletype = DrawableType::CIRCLE;
 
 		_r = radius;

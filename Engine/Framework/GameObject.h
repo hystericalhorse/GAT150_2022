@@ -8,19 +8,9 @@ namespace en
 	{
 	public:
 		GameObject() = default;
-		GameObject(const Transform& transform) :
-			_transform{ transform }
-		{}
 		~GameObject() = default;
 
 		virtual void Update() = 0;
-
-	protected:
-		Transform _transform;
-
-	private:
-
-
 	};
 }
 

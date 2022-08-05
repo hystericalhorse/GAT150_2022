@@ -24,7 +24,7 @@ namespace en
 		Color& get_color() { return _color; }
 		float get_radius() { return _radius; }
 	private:
-		en::Color _color;
+		en::Color _color {255, 255, 255, 255};
 		std::vector<en::Vector2> _points;
 		std::string _name;
 
