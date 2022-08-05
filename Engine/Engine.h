@@ -15,11 +15,14 @@
 #include "Core/File.h"
 #include "Core/Time.h"
 
+#include "Audio/AudioSys.h"
+
 #include "Framework/Background.h"
 #include "Framework/Scene.h"
 #include "Framework/Game.h"
 
-#include "Audio/AudioSys.h"
+#include "Components/PlayerComponent.h"
+#include "Components/SpriteComponent.h"
 
 #include <memory>
 #include <vector>

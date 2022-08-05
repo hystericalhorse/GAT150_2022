@@ -10,8 +10,8 @@ namespace en
 		Transform(const Vector2& pos, float rot, Vector2 sca) :
 			position{pos}, rotation{rot}, scale{sca}
 		{}
-		Vector2 position;
-		Vector2 scale {1, 1};
+		Vector2 position { 0,0 };
+		Vector2 scale { 1, 1 };
 		float rotation = 0.0f;
 	};
 }
