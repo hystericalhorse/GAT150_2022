@@ -17,10 +17,10 @@ namespace en
 	{
 	public:
 		Actor() = default;
+		~Actor();
 		Actor(const Transform& transform) :
 			_transform{ transform }
 		{}
-		~Actor() = default;
 
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
@@ -31,6 +31,19 @@ namespace en
 		float get_radius() { return 0; /*_model.get_radius() * std::max(_transform.scale.x, _transform.scale.y);*/ }
 
 		Transform& _Transform() { return this->_transform; }
+
+		template<typename T>
+		inline T* getComponent()
+		{
+			for (auto& component : _components)
+			{
+				T* a = dynamic_cast<T*>(component.get());
+				if (a) return a;
+			}
+
+			return nullptr;
+		}
+		
 		
 		friend class Scene;
 	protected:

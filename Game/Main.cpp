@@ -18,7 +18,10 @@ int main()
 
 	// Image
 	shared_ptr<en::Texture> texture = make_unique<en::Texture>();
-	texture->Create(en::__renderer, "image.png");
+	texture->Create(en::__renderer, "image/player.png");
+
+	// Audio
+	en::__audiosys.newAudio("s_engine", "audio/static.wav");
 
 	// Scene
 	en::Scene scene;
@@ -29,9 +32,11 @@ int main()
 	std::unique_ptr<en::Actor> a_player = make_unique<en::Actor>(t_player);
 	std::unique_ptr<en::PlayerComponent> com_player = make_unique<en::PlayerComponent>();
 	std::unique_ptr<en::SpriteComponent> com_sprite = make_unique<en::SpriteComponent>();
+	std::unique_ptr<en::PhysicsComponent> com_physics = make_unique<en::PhysicsComponent>();
 	com_sprite->_texture = texture;
-	a_player->addComponent(std::move(com_player));
 	a_player->addComponent(std::move(com_sprite));
+	a_player->addComponent(std::move(com_physics));
+	a_player->addComponent(std::move(com_player));
 	scene.Add(std::move(a_player));
 
 
@@ -45,6 +50,7 @@ int main()
 		en::Update(); // Update Engine
 
 		scene.Update();
+		std::cout << scene.getActor<en::Actor>()->getComponent<en::SpriteComponent>() << std::endl; // Identifies a Normal Block listed in Memory Leaks
 		angle += 30 * en::__time.ci_time;
 
 		// Global Checks

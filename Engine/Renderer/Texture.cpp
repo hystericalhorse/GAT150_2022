@@ -7,7 +7,7 @@ namespace en
 {
 	Texture::~Texture()
 	{
-		if (_texture != nullptr) SDL_DestroyTexture(_texture);
+		if (_texture) SDL_DestroyTexture(_texture);
 	}
 
 	bool Texture::Create(Renderer& renderer, const std::string& filename)

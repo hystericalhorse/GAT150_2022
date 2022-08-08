@@ -21,7 +21,8 @@ namespace en
 		Vector2 getSize() const;
 
 		friend class Renderer;
-	private:
+		friend class Component;
+	protected:
 		SDL_Texture* _texture = nullptr;
 
 	};
