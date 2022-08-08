@@ -2,6 +2,7 @@
 #define _COMPONENT_RENDER_H
 
 #include "Framework/Component.h"
+#include <memory>
 
 namespace en
 {

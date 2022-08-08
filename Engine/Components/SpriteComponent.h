@@ -2,6 +2,7 @@
 #define _COMPONENT_SPRITE_H
 
 #include "RenderComponent.h"
+#include "Renderer/Texture.h"
 
 namespace en
 {
@@ -15,9 +16,8 @@ namespace en
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
 
-		std::shared_ptr<Texture> _texture;
-	protected:
-
+	public:
+		std::shared_ptr<Texture> _texture = std::make_shared<Texture>();
 
 	};
 }
