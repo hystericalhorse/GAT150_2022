@@ -1,6 +1,8 @@
 #ifndef _SCENE_H
 #define _SCENE_H
 
+#include "Actor.h"
+
 #include <list>
 #include <memory>
 

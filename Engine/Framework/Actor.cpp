@@ -3,11 +3,21 @@
 
 namespace en
 {
+	Actor::~Actor()
+	{
+		for (auto& component : _components)
+		{
+			component.reset();
+		}
+	}
+
 	void Actor::Update()
 	{
-		for (auto &component : _components)
+		auto component = _components.begin();
+		while (component != _components.end())
 		{
-			component->Update();
+			(*component)->Update();
+			component++;
 		}
 	}
 
