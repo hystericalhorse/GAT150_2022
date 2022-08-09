@@ -6,8 +6,6 @@
 
 namespace en
 {
-	class Texture;
-
 	class SpriteComponent : public RenderComponent
 	{
 	public:
@@ -17,7 +15,7 @@ namespace en
 		virtual void Draw(Renderer& renderer) override;
 
 	public:
-		std::shared_ptr<Texture> _texture = std::make_shared<Texture>();
+		std::shared_ptr<en::Texture> _texture = std::make_shared<en::Texture>();
 
 	};
 }

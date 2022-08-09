@@ -50,7 +50,6 @@ int main()
 		en::Update(); // Update Engine
 
 		scene.Update();
-		std::cout << scene.getActor<en::Actor>()->getComponent<en::SpriteComponent>() << std::endl; // Identifies a Normal Block listed in Memory Leaks
 		angle += 30 * en::__time.ci_time;
 
 		// Global Checks
