@@ -8,6 +8,8 @@ namespace en
 {
 	struct Vector2
 	{
+		float x, y;
+
 		Vector2() = default;
 		Vector2(float x, float y) :
 			x{x}, y{y}
@@ -27,6 +29,8 @@ namespace en
 		}
 
 		void set(float x, float y) { this->x = x; this->y = y; }
+		float operator [] (size_t index) const { return (&x)[index]; }
+		float& operator [] (size_t index) { return (&x)[index]; }
 
 		Vector2 operator + (const Vector2& v) const { return Vector2(this->x + v.x, this->y + v.y); }
 		Vector2 operator - (const Vector2& v) const { return Vector2(this->x - v.x, this->y - v.y); }
@@ -84,8 +88,6 @@ namespace en
 		}
 
 		friend std::istream& operator >> (std::istream& stream, Vector2& v);
-
-		float x, y;
 
 		static const Vector2 one;
 		static const Vector2 zero;
