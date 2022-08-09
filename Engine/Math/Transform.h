@@ -2,6 +2,7 @@
 #define _TRANSFORM_H
 #include "Vector2.h"
 #include "Matrix2x2.h"
+#include "MathUtils.h"
 
 namespace en
 {
