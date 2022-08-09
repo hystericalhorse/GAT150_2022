@@ -8,6 +8,8 @@ namespace en
 {
 	struct Vector2
 	{
+		float x, y;
+
 		Vector2() = default;
 		Vector2(float x, float y) :
 			x{x}, y{y}
@@ -86,8 +88,6 @@ namespace en
 		}
 
 		friend std::istream& operator >> (std::istream& stream, Vector2& v);
-
-		float x, y;
 
 		static const Vector2 one;
 		static const Vector2 zero;
