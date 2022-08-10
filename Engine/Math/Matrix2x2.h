@@ -85,6 +85,8 @@ namespace en
 
 		mx[0] = Vector2 { c, -s };
 		mx[1] = Vector2 { s, c };
+
+		return mx;
 	}
 }
 
