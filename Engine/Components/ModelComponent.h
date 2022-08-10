@@ -7,6 +7,14 @@ namespace en
 {
 	class ModelComponent : public Component
 	{
+	public:
+		ModelComponent() = default;
+		~ModelComponent() = default;
+
+		void Update() override;
+
+	public:
+
 
 	};
 }
