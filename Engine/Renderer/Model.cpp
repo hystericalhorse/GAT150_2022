@@ -1,5 +1,8 @@
 #include "Model.h"
 #include "Core/File.h"
+#include "Math/Transform.h"
+#include "Math/MathUtils.h"
+#include "Core/Logger.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -8,18 +11,18 @@ namespace en
 {
 	Model::Model(const std::string& filename)
 	{
-		load(filename);
-		_radius = find_radius();
+		Load(filename);
+		_radius = findRadius();
 	}
 
 	Model::Model(const std::string& filename, const en::Color& color)
 	{
-		load(filename);
-		_radius = find_radius();
+		Load(filename);
+		_radius = findRadius();
 		_color = color;
 	}
 
-	void Model::draw(Renderer& renderer, const Vector2& position, float& angle, const Vector2& scale)
+	void Model::Draw(Renderer& renderer, const Vector2& position, float& angle, const Vector2& scale)
 	{
 		if (_points.size() == 1)
 		{
@@ -33,10 +36,47 @@ namespace en
 		}
 	}
 
-	void Model::load(const std::string& filename)
+	void Model::Draw(Renderer& renderer, const Transform& transform)
+	{
+		if (_points.empty()) return;
+
+		Matrix3x3 mx = transform.matrix;
+
+		if (_points.size() == 1)
+		{
+			renderer.drawPoint(transform.position, _color);
+			return;
+		}
+
+		for (size_t i = 0; i < _points.size() - 1; i++)
+		{
+			renderer.drawLine(
+				mx * Vector2::rotate(_points[i] * transform.scale, radians(transform.rotation)) + transform.position,
+				mx * Vector2::rotate(_points[i + 1] * transform.scale, radians(transform.rotation)) + transform.position,
+				_color
+			);
+		}
+	}
+
+	bool Model::Create(const std::string& filename)
+	{
+		if (!Load(filename))
+		{
+			LOG("ERROR: Could not read file %s", filename.c_str());
+			return false;
+		}
+
+		return true;
+	}
+
+	bool Model::Load(const std::string& filename)
 	{
 		std::string buffer;
-		en::readFile(filename, buffer);
+		if (!en::readFile(filename, buffer))
+		{
+			LOG("ERROR: Could not read file %s", filename.c_str());
+			return false;
+		}
 
 		std::istringstream stream(buffer);
 		stream >> _color;
@@ -53,9 +93,11 @@ namespace en
 
 			_points.push_back(point);
 		}
+
+		return true;
 	}
 
-	float Model::find_radius()
+	float Model::findRadius()
 	{
 		float r = 0.0f;
 

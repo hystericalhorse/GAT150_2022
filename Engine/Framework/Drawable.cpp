@@ -33,7 +33,7 @@ namespace en
 		{
 		case Drawable::DrawableType::MODEL:
 		{
-			_model.draw(renderer, _transform.position + offset, _transform.rotation, _transform.scale);
+			_model.Draw(renderer, _transform.position + offset, _transform.rotation, _transform.scale);
 
 			break;
 		}

@@ -26,6 +26,7 @@ namespace en
 		virtual void Draw(Renderer& renderer);
 
 		void addComponent(std::unique_ptr<Component> component);
+		void addChild(std::unique_ptr<Actor> child);
 
 		virtual void OnCollision(Actor* other) {}
 		float get_radius() { return 0; /*_model.get_radius() * std::max(_transform.scale.x, _transform.scale.y);*/ }
@@ -44,15 +45,16 @@ namespace en
 			return nullptr;
 		}
 		
-		
 		friend class Scene;
+		Transform _transform;
 	protected:
 		bool _living = true;
 
 		Scene* _scene = nullptr;
-		Transform _transform;
+		Actor* _parent = nullptr;
 
 		std::vector<std::unique_ptr<Component>> _components;
+		std::vector<std::unique_ptr<Actor>> _children;
 	};
 }
 

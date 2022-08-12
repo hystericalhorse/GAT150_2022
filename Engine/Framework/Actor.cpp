@@ -9,6 +9,8 @@ namespace en
 		{
 			component.reset();
 		}
+
+		if (_parent != nullptr) delete _parent;
 	}
 
 	void Actor::Update()
@@ -19,6 +21,16 @@ namespace en
 			(*component)->Update();
 			component++;
 		}
+
+		auto child = _children.begin();
+		while (child != _children.end())
+		{
+			(*child)->Update();
+			child++;
+		}
+
+		if (_parent) _transform.update(_parent->_transform.matrix);
+		else _transform.update();
 	}
 
 	void Actor::addComponent(std::unique_ptr<Component> component)
@@ -26,6 +38,12 @@ namespace en
 		component->_owner = this;
 		_components.push_back(std::move(component));
 	}
+	void Actor::addChild(std::unique_ptr<Actor> child)
+	{
+		child->_parent = this;
+		_children.push_back(std::move(child));
+	}
+
 	
 	void Actor::Draw(Renderer& renderer)
 	{
@@ -36,6 +54,11 @@ namespace en
 			{
 				r->Draw(renderer);
 			}
+		}
+
+		for (auto& child : _children)
+		{
+			child.get()->Draw(renderer);
 		}
 	}
 }

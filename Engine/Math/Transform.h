@@ -17,6 +17,7 @@ namespace en
 		Vector2 position { 0,0 };
 		Vector2 scale { 1, 1 };
 		float rotation = 0.0f; // rotation in degrees
+		Matrix3x3 matrix = Matrix3x3::identity;
 
 		/******************* Legacy ******************
 		operator Matrix2x2 () const
@@ -28,13 +29,32 @@ namespace en
 		}
 		*********************************************/
 
+		void update()
+		{
+			Matrix3x3 mxS = Matrix3x3::scale(scale);
+			Matrix3x3 mxR = Matrix3x3::rotate(en::radians(rotation));
+			Matrix3x3 mxT = Matrix3x3::translate(position);
+
+			matrix = { mxT * mxR * mxS };
+		}
+
+		void update(const Matrix3x3& parent)
+		{
+			Matrix3x3 mxS = Matrix3x3::scale(scale);
+			Matrix3x3 mxR = Matrix3x3::rotate(en::radians(rotation));
+			Matrix3x3 mxT = Matrix3x3::translate(position);
+
+			matrix = { mxT * mxR * mxS };
+			matrix = parent * matrix;
+		}
+
 		operator Matrix3x3 () const
 		{
 			Matrix3x3 mxS = Matrix3x3::scale(scale);
 			Matrix3x3 mxR = Matrix3x3::rotate(en::radians(rotation));
 			Matrix3x3 mxT = Matrix3x3::translate(position);
 
-			return { mxS * mxR * mxT };
+			return { mxT * mxR * mxS };
 		}
 	};
 }
