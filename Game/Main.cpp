@@ -31,27 +31,16 @@ int main()
 
 	// Actors
 
-	/*
-		en::Transform t_player{ {400, 300}, 0.0, 1.0 };
-		std::unique_ptr<en::Actor> a_player = make_unique<en::Actor>(t_player);
-		std::unique_ptr<en::PlayerComponent> com_player = make_unique<en::PlayerComponent>();
-		std::unique_ptr<en::SpriteComponent> com_sprite = make_unique<en::SpriteComponent>();
-		std::unique_ptr<en::PhysicsComponent> com_physics = make_unique<en::PhysicsComponent>();
-		com_sprite->_texture = texture;
-		a_player->addComponent(std::move(com_sprite));
-		a_player->addComponent(std::move(com_physics));
-		a_player->addComponent(std::move(com_player));
-		scene.Add(std::move(a_player));
-	*/
-
 	en::Transform t_player{ {400, 300}, 0.0, 2.0 };
 	std::unique_ptr<en::Actor> a_player = make_unique<en::Actor>(t_player);
 
 	std::unique_ptr<en::ModelComponent> com_model = make_unique<en::ModelComponent>();
+	std::unique_ptr<en::SpriteComponent> com_sprite = make_unique<en::SpriteComponent>();
 	std::unique_ptr<en::PlayerComponent> com_player = make_unique<en::PlayerComponent>();
 	std::unique_ptr<en::PhysicsComponent> com_physics = make_unique<en::PhysicsComponent>();
 
 	com_model->_model = model;
+	com_sprite->_texture = texture;
 
 	a_player->addComponent(std::move(com_model));
 	a_player->addComponent(std::move(com_physics));
