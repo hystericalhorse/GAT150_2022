@@ -11,8 +11,6 @@ namespace en
 	class RenderComponent : public Component
 	{
 	public:
-		RenderComponent() = default;
-
 		virtual void Draw(Renderer& renderer) = 0;
 
 	private:
