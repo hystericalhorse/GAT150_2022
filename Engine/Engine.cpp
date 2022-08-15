@@ -4,6 +4,8 @@ namespace en
 {
 	void Init()
 	{
+		en::Engine::Instance().Register();
+
 		en::__renderer.Init();
 		en::__inputsys.Init();
 		en::__audiosys.Init();

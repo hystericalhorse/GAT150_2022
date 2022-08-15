@@ -11,7 +11,6 @@ int main()
 
 	// Init
 	en::Init();
-	en::Engine::Instance().Register();
 
 	// Window
 	en::__renderer.newWindow("Game", 800, 600);
