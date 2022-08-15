@@ -118,6 +118,6 @@ namespace en
 
 		return mx;
 	}
-}
+};
 
 #endif // _MATRIX_3X3_H

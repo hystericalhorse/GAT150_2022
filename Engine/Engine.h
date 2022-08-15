@@ -27,6 +27,8 @@
 #include "Components/PhysicsComponent.h"
 #include "Components/ModelComponent.h"
 
+#include "Resource/ResourceManager.h"
+
 #include <memory>
 #include <vector>
 #include <list>
@@ -41,5 +43,6 @@ namespace en
 	extern Time __time;
 	extern Renderer __renderer;
 	extern AudioSys __audiosys;
+	extern ResourceManager __registry;
 }
 #endif // _ENGINE_H

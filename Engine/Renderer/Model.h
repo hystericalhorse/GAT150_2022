@@ -3,10 +3,11 @@
 #include <vector>
 #include <string>
 #include "Renderer.h"
+#include "Resource/Resource.h"
 
 namespace en
 {
-	class Model
+	class Model : public Resource
 	{
 	public:
 		Model() = default;
@@ -19,11 +20,12 @@ namespace en
 
 		void Draw(Renderer& renderer, const Vector2& position, float& angle, const Vector2& scale = Vector2{1, 1});
 		void Draw(Renderer& renderer, const Transform& transform);
-		bool Create(const std::string& filename);
+		bool Create(std::string filename, ...) override;
 		bool Load(const std::string& filename);
 		float findRadius();
 
 		Color& getColor() { return _color; }
+		void setColor(const en::Color& color) { _color = color; }
 		float getRadius() { return _radius; }
 	private:
 		en::Color _color {255, 255, 255, 255};

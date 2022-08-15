@@ -16,6 +16,13 @@ namespace en
 		void Update() override;
 		void Draw(Renderer& renderer) override;
 
+		bool get()
+		{
+			if (_model == nullptr) return false;
+
+			return true;
+		}
+
 	public:
 		std::shared_ptr<Model> _model = std::make_shared<Model>();
 

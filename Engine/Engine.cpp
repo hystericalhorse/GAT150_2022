@@ -7,6 +7,7 @@ namespace en
 		en::__renderer.Init();
 		en::__inputsys.Init();
 		en::__audiosys.Init();
+		en::__registry.Init();
 	}
 
 	void Update()
@@ -21,10 +22,12 @@ namespace en
 		en::__audiosys.Shutdown();
 		en::__renderer.Shutdown();
 		en::__inputsys.Shutdown();
+		en::__registry.Shutdown();
 	}
 
 	InputSystem __inputsys;
 	Time __time;
 	Renderer __renderer;
 	AudioSys __audiosys;
+	ResourceManager __registry;
 }

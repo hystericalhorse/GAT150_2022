@@ -17,13 +17,12 @@ int main()
 	en::__renderer.setClearColor(en::black);
 
 	// Assets
-	shared_ptr<en::Texture> texture = make_shared<en::Texture>();
-	texture->Create(en::__renderer, "image/player.png");
+	auto texture = en::__registry.Get<en::Texture>("image/player.png", &en::__renderer);
+	auto model1 = en::__registry.Get<en::Model>("model/m_starburst.txt");
+	model1->setColor({ 255, 255, 255, 255 });
+	int f_size = 24;
+	auto font = en::__registry.Get<en::Font>("font/VCR_OSD_MONO.ttf", &f_size);
 
-	shared_ptr<en::Model> model = make_shared<en::Model>();
-	model->Load("model/m_starburst.txt");
-
-	// Audio
 	en::__audiosys.newAudio("s_engine", "audio/static.wav");
 
 	// Scene
@@ -31,7 +30,7 @@ int main()
 
 	// Actors
 
-	en::Transform t_player{ {400, 300}, 0.0, 2.0 };
+	en::Transform t_player{ {400, 300}, 0.0, 10.0 };
 	std::unique_ptr<en::Actor> a_player = make_unique<en::Actor>(t_player);
 
 	std::unique_ptr<en::ModelComponent> com_model = make_unique<en::ModelComponent>();
@@ -39,7 +38,7 @@ int main()
 	std::unique_ptr<en::PlayerComponent> com_player = make_unique<en::PlayerComponent>();
 	std::unique_ptr<en::PhysicsComponent> com_physics = make_unique<en::PhysicsComponent>();
 
-	com_model->_model = model;
+	com_model->_model = model1;
 	com_sprite->_texture = texture;
 
 	a_player->addComponent(std::move(com_model));
@@ -62,12 +61,13 @@ int main()
 		// Global Checks
 		if (en::__inputsys.keyPressed(en::key_escape)) quit = true;
 
+		cout << to_string(scene.getActor<en::Actor>()->_Transform().position.x) << endl;
+
 		// Draw
 		en::__renderer.beginFrame();
 
 		// Draw Here
 		scene.Draw(en::__renderer);
-		//en::__renderer.Draw(texture, { 400, 300 }, angle, { 0.5, 0.5 });
 
 		en::__renderer.endFrame();
 	}

@@ -51,22 +51,20 @@ namespace en
 		for (size_t i = 0; i < _points.size() - 1; i++)
 		{
 			renderer.drawLine(
-				mx * Vector2::rotate(_points[i] * transform.scale, radians(transform.rotation)) + transform.position,
-				mx * Vector2::rotate(_points[i + 1] * transform.scale, radians(transform.rotation)) + transform.position,
+				Vector2::rotate(_points[i] * transform.scale, radians(transform.rotation)) + transform.position,
+				Vector2::rotate(_points[i + 1] * transform.scale, radians(transform.rotation)) + transform.position,
 				_color
 			);
 		}
 	}
 
-	bool Model::Create(const std::string& filename)
+	bool Model::Create(std::string filename, ...)
 	{
-		if (!Load(filename))
-		{
-			LOG("ERROR: Could not read file %s", filename.c_str());
-			return false;
-		}
+		va_list args;
+		va_start(args, filename);
+		va_end(args);
 
-		return true;
+		return Model::Load(filename);
 	}
 
 	bool Model::Load(const std::string& filename)
