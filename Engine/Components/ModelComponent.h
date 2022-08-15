@@ -1,12 +1,30 @@
 #ifndef _COMPONENT_MODEL_H
 #define _COMPONENT_MODEL_H
 
-#include "Framework/Component.h"
+#include "RenderComponent.h"
 
 namespace en
 {
-	class ModelComponent : public Component
+	class Model;
+
+	class ModelComponent : public RenderComponent
 	{
+	public:
+		ModelComponent() = default;
+		~ModelComponent() = default;
+
+		void Update() override;
+		void Draw(Renderer& renderer) override;
+
+		bool get()
+		{
+			if (_model == nullptr) return false;
+
+			return true;
+		}
+
+	public:
+		std::shared_ptr<Model> _model = std::make_shared<Model>();
 
 	};
 }

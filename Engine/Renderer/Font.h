@@ -2,19 +2,21 @@
 #define _FONT_H
 
 #include <string>
+#include "Resource/Resource.h"
 
 struct _TTF_Font;
 
 namespace en
 {
-	class Font
+	class Font : public Resource
 	{
 	public:
 		Font() = default;
 		Font(const std::string& filename, int fontSize);
 		~Font();
 
-		void load(const std::string& filename, int fontSize);
+		bool Create(std::string filename, ...);
+		void Load(const std::string& filename, int fontSize);
 
 		friend class Text;
 

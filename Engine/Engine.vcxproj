@@ -170,6 +170,7 @@
   <ItemGroup>
     <ClCompile Include="Audio\AudioSys.cpp" />
     <ClCompile Include="Components\AudioComponent.cpp" />
+    <ClCompile Include="Components\ModelComponent.cpp" />
     <ClCompile Include="Components\PhysicsComponent.cpp" />
     <ClCompile Include="Components\PlayerComponent.cpp" />
     <ClCompile Include="Components\SpriteComponent.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="Renderer\Model.cpp" />
     <ClCompile Include="Renderer\Renderer.cpp" />
     <ClCompile Include="Renderer\Text.cpp" />
+    <ClCompile Include="Resource\ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\AudioSys.h" />
@@ -211,9 +213,11 @@
     <ClInclude Include="Framework\Background.h" />
     <ClInclude Include="Framework\Component.h" />
     <ClInclude Include="Framework\Drawable.h" />
+    <ClInclude Include="Framework\Factory.h" />
     <ClInclude Include="Framework\Game.h" />
     <ClInclude Include="Framework\GameObject.h" />
     <ClInclude Include="Framework\Scene.h" />
+    <ClInclude Include="Framework\Singleton.h" />
     <ClInclude Include="Input\InputSystem.h" />
     <ClInclude Include="Math\Color.h" />
     <ClInclude Include="Math\MathUtils.h" />
@@ -228,6 +232,8 @@
     <ClInclude Include="Renderer\Model.h" />
     <ClInclude Include="Renderer\Renderer.h" />
     <ClInclude Include="Renderer\Text.h" />
+    <ClInclude Include="Resource\Resource.h" />
+    <ClInclude Include="Resource\ResourceManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

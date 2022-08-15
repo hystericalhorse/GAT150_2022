@@ -16,7 +16,7 @@ namespace en
 		Vector3 operator [] (size_t index) const { return rows[index]; }
 		Vector3& operator [] (size_t index) { return rows[index]; }
 
-		Vector3 operator * (const Vector3& v)
+		Vector3 operator * (const Vector3& v) const
 		{
 			return Vector3
 			{
@@ -26,7 +26,7 @@ namespace en
 			};
 		}
 
-		Vector2 operator * (const Vector2& v)
+		Vector2 operator * (const Vector2& v) const
 		{
 			return Vector2
 			{
@@ -35,7 +35,7 @@ namespace en
 			};
 		}
 
-		Matrix3x3 operator * (const Matrix3x3& m)
+		Matrix3x3 operator * (const Matrix3x3& m) const
 		{
 			Matrix3x3 r;
 
@@ -118,6 +118,6 @@ namespace en
 
 		return mx;
 	}
-}
+};
 
 #endif // _MATRIX_3X3_H

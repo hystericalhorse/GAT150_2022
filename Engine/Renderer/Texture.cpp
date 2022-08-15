@@ -21,6 +21,18 @@ namespace en
 		return true;
 	}
 
+	bool Texture::Create(std::string filename, ...)
+	{
+		va_list args;
+		va_start(args, filename);
+
+		Renderer& renderer = va_arg(args, Renderer);
+
+		va_end(args);
+
+		return Texture::Create(renderer, filename);
+	}
+
 	en::Vector2 Texture::getSize() const
 	{
 		SDL_Point point{};
