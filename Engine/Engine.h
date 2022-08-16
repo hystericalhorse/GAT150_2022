@@ -1,6 +1,8 @@
 #ifndef _ENGINE_H
 #define _ENGINE_H
 
+#include "Serialization/JSON.h"
+
 #include "Input/InputSystem.h"
 
 #include "Renderer/Renderer.h"

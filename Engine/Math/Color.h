@@ -15,6 +15,9 @@ namespace en
 			r {r}, g{g}, b{b}, a{a}
 		{}
 
+		u8_t operator [] (size_t index) const { return (&r)[index]; }
+		u8_t& operator [] (size_t index) { return (&r)[index]; }
+
 		inline Color operator = (const Color& c)
 		{
 			this->r = c.r;
@@ -59,6 +62,7 @@ namespace en
 	static const Color violet{ 255, 0, 255, 255 };
 
 	std::istream& operator >> (std::istream& stream, Color& c);
+	std::ostream& operator << (std::ostream& stream, const Color& c);
 }
 
 #endif // _COLOR_H

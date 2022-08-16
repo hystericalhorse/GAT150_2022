@@ -32,6 +32,9 @@
     <Filter Include="Source\Resource">
       <UniqueIdentifier>{80a8fb23-20cd-4713-9d7e-9c7a9bde55d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Serialization">
+      <UniqueIdentifier>{90d9778d-86b3-446f-88e5-579268627e06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -114,6 +117,9 @@
     </ClCompile>
     <ClCompile Include="Resource\ResourceManager.cpp">
       <Filter>Source\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="Serialization\JSON.cpp">
+      <Filter>Source\Serialization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +233,9 @@
     </ClInclude>
     <ClInclude Include="Framework\Factory.h">
       <Filter>Source\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Serialization\JSON.h">
+      <Filter>Source\Serialization</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
