@@ -18,7 +18,7 @@ namespace en
 		~Texture();
 
 		bool Create(Renderer& renderer, const std::string& filename);
-		bool Create(std::string filename, ...);
+		bool Create(std::string filename, ...) override;
 
 		Vector2 getSize() const;
 
