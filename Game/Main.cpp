@@ -10,7 +10,7 @@ int main()
 	en::setPath("../Assets");
 
 	rapidjson::Document document;
-	bool success = en::json::Load("jsonfile.txt", document);
+	bool success = en::json::Load("json.json", document);
 	assert(success);
 
 	std::string str;
