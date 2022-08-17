@@ -14,6 +14,9 @@ namespace en
 		void Update() override;
 		void Draw(en::Renderer& renderer) {}
 
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
+
 		void Force(const Vector2& direction, const float& magnitude);
 
 	public:

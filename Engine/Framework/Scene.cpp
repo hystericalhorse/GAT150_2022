@@ -1,5 +1,7 @@
 #include "Scene.h"
+#include "Factory.h"
 #include "Renderer/Renderer.h"
+#include "Core/Logger.h"
 
 #include <iostream>
 
@@ -39,6 +41,39 @@ namespace en
 		{
 			actor->Draw(renderer);
 		}
+	}
+
+	bool Scene::Write(const rapidjson::Value& value) const
+	{
+
+
+		return true;
+	}
+
+	bool Scene::Read(const rapidjson::Value& value)
+	{
+		if (!value.HasMember("actors") || !value["actors"].IsArray())
+		{
+			LOG("ERROR: Could not find 'actors' component in level file.");
+			return false;
+		}
+
+		for (auto& aut : value["actors"].GetArray())
+		{
+			std::string type;
+			READ_DATA(aut, type);
+
+			auto actor = Factory::Instance().Retrieve<en::Actor>(type);
+			if (!actor)
+			{
+				LOG("ERROR: Did not find type 'Actor' in actor object.");
+				return false;
+			}
+
+			actor->Read(aut);
+		}
+
+		return true;
 	}
 
 	void Scene::Add(std::unique_ptr<Actor> actor)

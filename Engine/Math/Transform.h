@@ -5,9 +5,11 @@
 #include "Matrix3x3.h"
 #include "MathUtils.h"
 
+#include "Serialization/Serializable.h"
+
 namespace en
 {
-	struct Transform
+	struct Transform : public Serializable
 	{
 		Transform() = default;
 		Transform(const Vector2& pos, float rot, Vector2 sca) :
@@ -18,6 +20,21 @@ namespace en
 		Vector2 scale { 1, 1 };
 		float rotation = 0.0f; // rotation in degrees
 		Matrix3x3 matrix = Matrix3x3::identity;
+
+		virtual bool Write(const rapidjson::Value& value) const override
+		{
+			// TODO
+
+			return true;
+		}
+		virtual bool Read(const rapidjson::Value& value) override
+		{
+			READ_DATA(value, position);
+			READ_DATA(value, scale);
+			READ_DATA(value, rotation);
+
+			return true;
+		}
 
 		/******************* Legacy ******************
 		operator Matrix2x2 () const

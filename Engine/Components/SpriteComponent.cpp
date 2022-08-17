@@ -14,4 +14,14 @@ namespace en
 	{	
 		renderer.Draw(_texture, _owner->_Transform());
 	}
+
+	bool SpriteComponent::Write(const rapidjson::Value& value) const
+	{
+		return true;
+	}
+
+	bool SpriteComponent::Read(const rapidjson::Value& value)
+	{
+		return true;
+	}
 }

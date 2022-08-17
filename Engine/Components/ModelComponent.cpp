@@ -13,4 +13,14 @@ namespace en
 	{
 		_model->Draw(renderer, _owner->_Transform());
 	}
+
+	bool ModelComponent::Write(const rapidjson::Value& value) const
+	{
+		return true;
+	}
+
+	bool ModelComponent::Read(const rapidjson::Value& value)
+	{
+		return true;
+	}
 }

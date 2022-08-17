@@ -15,6 +15,9 @@ namespace en
 		void Play();
 		void Stop();
 
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
+
 	public:
 		std::string _sound;
 		bool _playOnWake;

@@ -4,6 +4,8 @@
 #include "Document.h"
 #include <string>
 
+#define READ_DATA(value, data) en::json::Get(value, #data, data)
+
 namespace en
 {
 	struct Vector2;

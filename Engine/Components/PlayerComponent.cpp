@@ -39,4 +39,17 @@ namespace en
 			}
 		}
 	}
+
+	bool PlayerComponent::Write(const rapidjson::Value& value) const
+	{
+		return true;
+	}
+
+	bool PlayerComponent::Read(const rapidjson::Value& value)
+	{
+		float& speed = _max_velocity;
+		READ_DATA(value, speed);
+
+		return true;
+	}
 }

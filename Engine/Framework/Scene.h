@@ -11,7 +11,7 @@ namespace en
 	class Actor; // forward declaration for Actor
 	class Renderer; // forward declaration for Renderer
 
-	class Scene
+	class Scene : public Serializable
 	{
 	public:
 		Scene() = default;
@@ -19,6 +19,10 @@ namespace en
 
 		void Update();
 		void Draw(Renderer& renderer);
+
+		// Inheritance
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 		void Add(std::unique_ptr<Actor> actor);
 		void Remove() {}

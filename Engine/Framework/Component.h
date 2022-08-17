@@ -6,12 +6,14 @@
 
 namespace en
 {
-	class Component : public GameObject
+	class Component : public GameObject, public Serializable
 	{
 	public:
 		Component() = default;
 		~Component() = default;
 
+		virtual bool Write(const rapidjson::Value& value) const = 0;
+		virtual bool Read(const rapidjson::Value& value) = 0;
 		virtual void Update() = 0;
 
 		friend class Actor;

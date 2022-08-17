@@ -1,5 +1,7 @@
 #include "Actor.h"
 #include "Components/RenderComponent.h"
+#include "Core/Logger.h"
+#include "Factory.h"
 
 namespace en
 {
@@ -42,6 +44,41 @@ namespace en
 	{
 		child->_parent = this;
 		_children.push_back(std::move(child));
+	}
+
+	bool Actor::Write(const rapidjson::Value& value) const
+	{
+
+
+		return true;
+	}
+
+	bool Actor::Read(const rapidjson::Value& value)
+	{
+		std::string& name = _name;
+		std::string& tag = _tag;
+
+		READ_DATA(value, name);
+		READ_DATA(value, tag);
+		_transform.Read(value["transform"]);
+
+		if (value.HasMember("components") && value["components"].IsArray())
+		{
+			for (auto& aut : value["components"].GetArray())
+			{
+				std::string type;
+				READ_DATA(aut, type);
+
+				auto component = Factory::Instance().Retrieve<en::Component>(type);
+				if (!component->Read(aut))
+				{
+					LOG("ERROR: Problem reading component data.");
+				}
+				addComponent(std::move(component));
+			}
+		}
+
+		return true;
 	}
 
 	
