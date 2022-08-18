@@ -1,33 +1,30 @@
 {
-  "actors": [
+  "actors":
+  [
     {
       "type": "Actor",
       "name": "Player",
       "tag": "Player",
-      "transform": {
-        "position": [
-          400.0,
-          300.0
-        ],
-        "scale": [
-          5.0,
-          5.0
-        ],
+      "transform":
+	  {
+        "position": [ 400.0, 300.0 ],
+        "scale": [ 1.0, 1.0 ],
         "rotation": 0.0
       },
-      "components": [
+      "components":
+	  [
         {
           "type": "PlayerComponent",
           "speed": 200.0
         },
 		{
-			"type": "ModelComponent",
-			"model": "model/m_player.txt"
+			"type": "SpriteComponent",
+			"texture": "image/s_player.png"
 		},
 		{
 			"type": "PhysicsComponent",
 			"velocity": [ 0.0, 0.0 ],
-			"accleration": [ 0.0, 0.0 ],
+			"acceleration": [ 0.0, 0.0 ],
 			"damping": 0.99
 		}
       ]

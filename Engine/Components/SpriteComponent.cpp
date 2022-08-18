@@ -1,5 +1,5 @@
 #include "SpriteComponent.h"
-#include "Renderer/Renderer.h"
+#include "Engine.h"
 
 #include <iostream>
 
@@ -22,6 +22,11 @@ namespace en
 
 	bool SpriteComponent::Read(const rapidjson::Value& value)
 	{
+		std::string texture;
+		READ_DATA(value, texture);
+
+		_texture = en::__registry.Get<en::Texture>(texture, __renderer);
+
 		return true;
 	}
 }
