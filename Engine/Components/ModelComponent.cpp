@@ -1,4 +1,6 @@
 #include "ModelComponent.h"
+
+#include "Engine.h"
 #include "Renderer/Model.h"
 #include "Framework/Actor.h"
 
@@ -21,6 +23,11 @@ namespace en
 
 	bool ModelComponent::Read(const rapidjson::Value& value)
 	{
+		std::string model;
+		READ_DATA(value, model);
+
+		_model = en::__registry.Get<en::Model>(model);
+
 		return true;
 	}
 }

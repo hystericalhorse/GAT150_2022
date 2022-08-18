@@ -71,12 +71,13 @@ namespace en
 			}
 
 			actor->Read(aut);
+			addActor(std::move(actor));
 		}
 
 		return true;
 	}
 
-	void Scene::Add(std::unique_ptr<Actor> actor)
+	void Scene::addActor(std::unique_ptr<Actor> actor)
 	{
 		actor->_scene = this;
 		_actors.push_back(std::move(actor));

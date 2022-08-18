@@ -26,8 +26,6 @@ int main()
 
 	scene.Read(document);
 
-	// Actors
-
 	// Variables
 
 	bool quit = false;
