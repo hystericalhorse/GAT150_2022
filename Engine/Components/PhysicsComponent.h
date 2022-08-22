@@ -11,13 +11,13 @@ namespace en
 	public:
 		PhysicsComponent() = default;
 
-		void Update() override;
+		virtual void Update() override;
 		void Draw(en::Renderer& renderer) {}
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
-		void Force(const Vector2& direction, const float& magnitude);
+		virtual void Force(const Vector2& direction, const float& magnitude);
 
 	public:
 		Vector2 _velocity { 0, 0 };

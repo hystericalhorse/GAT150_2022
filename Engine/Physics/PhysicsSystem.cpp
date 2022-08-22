@@ -1,11 +1,14 @@
 #include "PhysicsSystem.h"
+#include "Math/MathUtils.h"
 
 namespace en
 {
+	const float PhysicsSystem::pixelsPerUnit = 48.0f;
+	
 	void PhysicsSystem::Init()
 	{
 		b2Vec2 gravity{ 0.0f, 9.82f };
-		world = std::make_unique<b2World>(gravity);
+		_world = std::make_unique<b2World>(gravity);
 	}
 
 	void PhysicsSystem::Shutdown()
@@ -15,6 +18,25 @@ namespace en
 
 	void PhysicsSystem::Update()
 	{
-		// TODO
+		_world->Step( 1.0f / 60.0f, 8, 3);
+	}
+
+	b2Body* PhysicsSystem::CreateBody(const Vector2& position, float angle, const PhysicsSystem::RigidBodyDat& data)
+	{
+		Vector2 worldPos = ScreenToWorld(position);
+
+		b2BodyDef bodyDef;
+		bodyDef.type = (data.is_dynamic) ? b2_dynamicBody : b2_staticBody;
+		bodyDef.position = *((b2Vec2*)(&worldPos));
+		bodyDef.angle = en::radians(angle);
+		bodyDef.fixedRotation = data.constrain_rotation;
+		b2Body* body = _world->CreateBody(&bodyDef);
+
+		return body;
+	}
+
+	void PhysicsSystem::DestroyBody(b2Body* body)
+	{
+		_world->DestroyBody(body);
 	}
 }

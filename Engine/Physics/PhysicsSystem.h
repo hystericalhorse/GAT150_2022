@@ -1,13 +1,34 @@
 #ifndef _PHYSICS_SYSTEM_H
 #define _PHYSICS_SYSTEM_H
 
-#include "b2_world.h"
+#include "Math/Vector2.h"
+#include "box2d.h"
 #include <memory>
+
+#define VECTOR2_TO_B2VEC2(vec) (*(b2Vec2*)(&vec))
+#define B2VEC2_TO_VECTOR2(vec) (*(en::Vector2*)(&vec))
 
 namespace en
 {
 	class PhysicsSystem
 	{
+	public:
+		struct RigidBodyDat
+		{
+			float gravity_scale = 1.0;
+			bool constrain_rotation = false; // if false will not rotate along z-axis.
+			bool is_dynamic = true; // if false, object is static in world.
+		};
+
+		struct CollisionDat
+		{
+			Vector2 size {0, 0};
+			float density = 1.0;
+			float friction = 1.0;
+			float restitution = 0.3f;
+			bool is_trigger = false;
+		};
+
 	public:
 		PhysicsSystem() = default;
 		~PhysicsSystem() = default;
@@ -17,10 +38,23 @@ namespace en
 
 		void Update();
 
+		b2Body* CreateBody(const Vector2& position, float angle, const RigidBodyDat& data);
+		void DestroyBody(b2Body* body);
+
+		static Vector2 ScreenToWorld(const Vector2& screen)
+		{
+			return screen / pixelsPerUnit;
+		}
+
+		static Vector2 WorldToScreen(const Vector2& world)
+		{
+			return world / pixelsPerUnit;
+		}
+
 	private:
-		std::unique_ptr<b2World> world;
+		std::unique_ptr<b2World> _world;
 
-
+		static const float pixelsPerUnit;
 	};
 }
 
