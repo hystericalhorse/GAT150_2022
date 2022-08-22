@@ -19,6 +19,8 @@
 
 #include "Audio/AudioSys.h"
 
+#include "Physics/PhysicsSystem.h"
+
 #include "Framework/Background.h"
 #include "Framework/Scene.h"
 #include "Framework/Game.h"
@@ -30,6 +32,7 @@
 #include "Components/AudioComponent.h"
 #include "Components/PhysicsComponent.h"
 #include "Components/ModelComponent.h"
+#include "Components/SpriteAnimComponent.h"
 
 #include "Resource/ResourceManager.h"
 
@@ -48,6 +51,7 @@ namespace en
 	extern Renderer __renderer;
 	extern AudioSys __audiosys;
 	extern ResourceManager __registry;
+	extern PhysicsSystem __physics;
 
 	class Engine : public Singleton<Engine>
 	{

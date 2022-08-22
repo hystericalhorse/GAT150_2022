@@ -10,6 +10,7 @@ namespace en
 {
 	struct Vector2;
 	struct Color;
+	struct Rect;
 
 	namespace json
 	{
@@ -21,6 +22,7 @@ namespace en
 		bool Get(const rapidjson::Value& value, const std::string& name, std::string& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, en::Vector2& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, en::Color& data);
+		bool Get(const rapidjson::Value& value, const std::string& name, en::Rect& data);
 	}
 }
 

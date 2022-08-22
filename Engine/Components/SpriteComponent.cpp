@@ -1,8 +1,6 @@
 #include "SpriteComponent.h"
 #include "Engine.h"
 
-#include <iostream>
-
 namespace en
 {
 	void SpriteComponent::Update()
@@ -12,7 +10,7 @@ namespace en
 
 	void SpriteComponent::Draw(Renderer& renderer)
 	{	
-		renderer.Draw(_texture, _owner->_Transform());
+		renderer.Draw(_texture, source, _owner->_Transform());
 	}
 
 	bool SpriteComponent::Write(const rapidjson::Value& value) const
@@ -23,9 +21,16 @@ namespace en
 	bool SpriteComponent::Read(const rapidjson::Value& value)
 	{
 		std::string texture;
+		
 		READ_DATA(value, texture);
-
 		_texture = en::__registry.Get<en::Texture>(texture, __renderer);
+
+		if (!READ_DATA(value, source))
+		{
+			source.x = 0; source.y = 0;
+			source.w = (int) _texture->getSize().x;
+			source.h = (int) _texture->getSize().y;
+		}
 
 		return true;
 	}

@@ -10,6 +10,7 @@ namespace en
 		en::__inputsys.Init();
 		en::__audiosys.Init();
 		en::__registry.Init();
+		en::__physics.Init();
 	}
 
 	void Update()
@@ -17,6 +18,7 @@ namespace en
 		en::__audiosys.Update();
 		en::__inputsys.Update();
 		en::__time.Tick();
+		en::__physics.Update();
 	}
 
 	void Shutdown()
@@ -35,6 +37,7 @@ namespace en
 		REGISTER_CLASS(PhysicsComponent);
 		REGISTER_CLASS(PlayerComponent);
 		REGISTER_CLASS(SpriteComponent);
+		REGISTER_CLASS(SpriteAnimComponent);
 	}
 
 	InputSystem __inputsys;
@@ -42,4 +45,5 @@ namespace en
 	Renderer __renderer;
 	AudioSys __audiosys;
 	ResourceManager __registry;
+	PhysicsSystem __physics;
 }

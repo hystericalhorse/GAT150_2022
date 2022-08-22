@@ -4,6 +4,7 @@
 #include "Core/Logger.h"
 #include "Math/Vector2.h"
 #include "Math/Color.h"
+#include "Math/Rect.h"
 
 #include <fstream>
 #include <fmod_common.h>
@@ -107,6 +108,30 @@ namespace en::json
 	}
 
 	bool Get(const rapidjson::Value& value, const std::string& name, Color& data)
+	{
+		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray() == false || value[name.c_str()].Size() != 4)
+		{
+			LOG("ERROR: Problem reading JSON data %s", name.c_str());
+			return false;
+		}
+
+		auto& array = value[name.c_str()];
+
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++)
+		{
+			if (!array[i].IsInt())
+			{
+				LOG("ERROR: JSON data %s is not an integer", name.c_str());
+				return false;
+			}
+
+			data[i] = array[i].GetInt();
+		}
+
+		return true;
+	}
+
+	bool Get(const rapidjson::Value& value, const std::string& name, Rect& data)
 	{
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray() == false || value[name.c_str()].Size() != 4)
 		{
