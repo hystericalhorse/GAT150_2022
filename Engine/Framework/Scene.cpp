@@ -7,6 +7,11 @@
 
 namespace en
 {
+	void Scene::Init()
+	{
+		for (auto& actor : _actors) { actor->Init(); }
+	}
+
 	void Scene::Update()
 	{
 		auto iter = _actors.begin();

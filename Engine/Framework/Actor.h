@@ -22,6 +22,7 @@ namespace en
 			_transform{ transform }
 		{}
 
+		void Init() override;
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
 

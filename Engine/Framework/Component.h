@@ -14,6 +14,7 @@ namespace en
 
 		virtual bool Write(const rapidjson::Value& value) const = 0;
 		virtual bool Read(const rapidjson::Value& value) = 0;
+		virtual void Init() override {}
 		virtual void Update() = 0;
 
 		friend class Actor;

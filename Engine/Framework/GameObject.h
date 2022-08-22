@@ -13,6 +13,7 @@ namespace en
 		GameObject() = default;
 		~GameObject() = default;
 
+		virtual void Init() = 0;
 		virtual void Update() = 0;
 	};
 }

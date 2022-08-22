@@ -15,20 +15,29 @@ namespace en
 		if (_parent != nullptr) delete _parent;
 	}
 
-	void Actor::Update()
+	void Actor::Init()
 	{
-		auto component = _components.begin();
-		while (component != _components.end())
+		for (auto& component : _components)
 		{
-			(*component)->Update();
-			component++;
+			component->Init();
 		}
 
-		auto child = _children.begin();
-		while (child != _children.end())
+		for (auto& child : _children)
 		{
-			(*child)->Update();
-			child++;
+			child->Init();
+		}
+	}
+
+	void Actor::Update()
+	{
+		for (auto& component : _components)
+		{
+			component->Update();
+		}
+
+		for (auto& child : _children)
+		{
+			child->Update();
 		}
 
 		if (_parent) _transform.update(_parent->_transform.matrix);

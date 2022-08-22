@@ -11,13 +11,14 @@ namespace en
 	class Actor; // forward declaration for Actor
 	class Renderer; // forward declaration for Renderer
 
-	class Scene : public Serializable
+	class Scene : public GameObject, public Serializable
 	{
 	public:
 		Scene() = default;
 		~Scene() = default;
 
-		void Update();
+		void Init() override;
+		void Update() override;
 		void Draw(Renderer& renderer);
 
 		// Inheritance

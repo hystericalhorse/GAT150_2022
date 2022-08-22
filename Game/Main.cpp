@@ -25,6 +25,7 @@ int main()
 	bool success = en::json::Load("level.json", document);
 
 	scene.Read(document);
+	scene.Init();
 
 	// Variables
 

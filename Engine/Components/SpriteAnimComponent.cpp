@@ -16,7 +16,7 @@ namespace en
 			}
 		}
 
-		Vector2 cellSize = _texture->getSize() / Vector2{ columns, rows };
+		Vector2 cellSize = _texture->getSize() / Vector2 { columns, rows };
 
 		int column = (frame - 1) % columns;
 		int row = (frame - 1) / columns;
