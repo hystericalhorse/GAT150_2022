@@ -12,6 +12,7 @@ namespace en
 	public:
 		CollisionComponent() = default;
 
+		void Init() override;
 		void Update() override;
 
 		bool Write(const rapidjson::Value& value) const override;
