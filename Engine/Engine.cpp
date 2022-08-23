@@ -35,6 +35,7 @@ namespace en
 		REGISTER_CLASS(AudioComponent);
 		REGISTER_CLASS(ModelComponent);
 		REGISTER_CLASS(PhysicsComponent);
+		REGISTER_CLASS(RigidBodPhysicsComponent);
 		REGISTER_CLASS(PlayerComponent);
 		REGISTER_CLASS(SpriteComponent);
 		REGISTER_CLASS(SpriteAnimComponent);

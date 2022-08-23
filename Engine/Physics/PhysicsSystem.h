@@ -41,6 +41,8 @@ namespace en
 		b2Body* CreateBody(const Vector2& position, float angle, const RigidBodyDat& data);
 		void DestroyBody(b2Body* body);
 
+		void SetCollisionBox(b2Body* body, const CollisionDat& data, class Actor* actor = nullptr);
+
 		static Vector2 ScreenToWorld(const Vector2& screen)
 		{
 			return screen / pixelsPerUnit;
