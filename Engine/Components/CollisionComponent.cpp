@@ -8,9 +8,8 @@ namespace en
 		auto component = _owner->getComponent<en::RigidBodPhysicsComponent>();
 		if (component)
 		{
-			en::__physics.SetCollisionBox(nullptr, data);
+			en::__physics.SetCollisionBox(component->_body, data, _owner);
 		}
-
 	}
 
 	void CollisionComponent::Update()
@@ -27,11 +26,11 @@ namespace en
 
 	bool CollisionComponent::Read(const rapidjson::Value& value)
 	{
-		Vector2 size{ 0, 0 };
-		float density = 1.0;
-		float friction = 1.0;
-		float restitution = 0.3f;
-		bool is_trigger = false;
+		Vector2& size = data.size;
+		float& density = data.density;
+		float& friction = data.friction;
+		float& restitution = data.restitution;
+		bool& is_trigger = data.is_trigger;
 
 		READ_DATA(value, size);
 		READ_DATA(value, density);

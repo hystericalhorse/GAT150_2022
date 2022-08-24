@@ -1,5 +1,5 @@
 #ifndef _INTERFACE_SERIALIZABLE_H
-#define _INTERFACE_SERIALIZER_H
+#define _INTERFACE_SERIALIZABLE_H
 
 #include "JSON.h"
 
@@ -15,4 +15,4 @@ namespace en
 	};
 }
 
-#endif // _INTERFACE_SERIALIZER_H
+#endif // _INTERFACE_SERIALIZABLE_H

@@ -69,7 +69,8 @@ namespace en
 
 		READ_DATA(value, name);
 		READ_DATA(value, tag);
-		_transform.Read(value["transform"]);
+		
+		if (value.HasMember("transform")) _transform.Read(value["transform"]);
 
 		if (value.HasMember("components") && value["components"].IsArray())
 		{

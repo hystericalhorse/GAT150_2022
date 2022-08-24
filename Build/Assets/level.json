@@ -2,6 +2,39 @@
   "actors":
   [
     {
+	  "type": "Actor",
+	  "name": "Background",
+	  "tag": "Background",
+	  "transform":
+	  {
+		"position": [ 400.0, 300.0 ],
+		"scale": [ 1.0, 1.0],
+		"rotation": 0.0
+	  },
+	  "components":
+	  [
+	    {
+		  "type": "SpriteComponent",
+		  "texture": "image/background.png"
+	    }
+	  ]
+    },
+	{
+	  "type": "Actor",
+	  "name": "Music",
+	  "components":
+	  [
+	    {
+		  "type": "AudioComponent",
+		  "sound_name": "audio/five_hours.mp3",
+		  "pitch": 1.0,
+		  "volume": 0.2,
+		  "play_on_start": true,
+		  "loop": true
+		}
+	  ]
+	},
+    {
       "type": "Actor",
       "name": "Player",
       "tag": "Player",
@@ -15,7 +48,7 @@
 	  [
         {
           "type": "PlayerComponent",
-          "speed": 200.0
+          "speed": 10.0
         },
 		{
 			"type": "SpriteAnimComponent",
@@ -31,9 +64,17 @@
 			"velocity": [ 0.0, 0.0 ],
 			"acceleration": [ 0.0, 0.0 ],
 			"damping": 0.99,
-			"gravity_scale": 9.82,
+			"gravity_scale": 1.0,
 			"constrain_rotation": false,
 			"is_dynamic": true
+		},
+		{
+			"type": "CollisionComponent",
+			"size": [ 48.0, 48.0 ],
+			"density": 1.0,
+			"friction": 1.0,
+			"restitution": 	0.3,
+			"is_trigger": false
 		}
       ]
     }

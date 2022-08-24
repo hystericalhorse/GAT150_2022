@@ -13,7 +13,7 @@ int main()
 	en::Init();
 
 	// Window
-	en::__renderer.newWindow("Game", 1280, 720);
+	en::__renderer.newWindow("Game", 800, 600);
 	en::__renderer.setClearColor(en::black);
 
 	// Assets
