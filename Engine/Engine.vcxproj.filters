@@ -136,6 +136,9 @@
     <ClCompile Include="Components\CollisionComponent.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Audio\AudioChannel.cpp">
+      <Filter>Source\Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\MathUtils.h">
@@ -272,6 +275,9 @@
     </ClInclude>
     <ClInclude Include="Physics\Collidable.h">
       <Filter>Source\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio\AudioChannel.h">
+      <Filter>Source\Audio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

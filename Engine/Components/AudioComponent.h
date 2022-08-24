@@ -2,6 +2,7 @@
 #define _COMPONENT_AUDIO_H
 
 #include "Framework/Component.h"
+#include "Audio/AudioChannel.h"
 #include <string>
 
 namespace en
@@ -10,7 +11,9 @@ namespace en
 	{
 	public:
 		AudioComponent() = default;
+		~AudioComponent();
 
+		void Init() override;
 		void Update() override;
 		void Play();
 		void Stop();
@@ -19,6 +22,8 @@ namespace en
 		virtual bool Read(const rapidjson::Value& value) override;
 
 	public:
+		AudioChannel _channel;
+
 		std::string _sound;
 		bool _playOnWake;
 		bool _loop = false;

@@ -2,6 +2,7 @@
 #define _COMPONENT_H
 
 #include "GameObject.h"
+#include "Serialization/Serializable.h"
 #include "Actor.h"
 
 namespace en

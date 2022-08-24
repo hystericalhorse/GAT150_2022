@@ -20,6 +20,7 @@ namespace en
 
 		void Force(const Vector2& direction, const float& magnitude) override;
 
+		friend class CollisionComponent;
 	private:
 		PhysicsSystem::RigidBodyDat data;
 		b2Body* _body = nullptr;

@@ -40,7 +40,7 @@ namespace en
 		_world->DestroyBody(body);
 	}
 
-	void PhysicsSystem::SetCollisionBox(b2Body* body, const CollisionDat& data, class Actor* actor = nullptr)
+	void PhysicsSystem::SetCollisionBox(b2Body* body, const CollisionDat& data, class Actor* actor)
 	{
 		b2PolygonShape shape;
 		Vector2 worldSize = PhysicsSystem::ScreenToWorld(data.size * 0.5f);

@@ -1,4 +1,5 @@
 #include "AudioSys.h"
+#include "AudioChannel.h"
 #include "Core/Logger.h"
 #include <fmod.hpp>
 #include <iterator>
@@ -42,18 +43,22 @@ namespace en
 		}
 	}
 
-	void AudioSys::playAudio(const std::string& name, bool loop)
+	AudioChannel AudioSys::playAudio(const std::string& name, float volume, float pitch, bool loop)
 	{
 		auto iter = _sounds.find(name);
-		if (iter == _sounds.end()) { LOG("ERROR: could not find audio %s", name.c_str()); return; }
-		if (iter != _sounds.end())
-		{
-			FMOD::Sound* sound = iter->second;
-			loop ? sound->setMode(FMOD_LOOP_NORMAL) : sound->setMode(FMOD_LOOP_OFF);
+		if (iter == _sounds.end()) { LOG("ERROR: could not find audio %s", name.c_str()); return AudioChannel(); }
+		
+		FMOD::Sound* sound = iter->second;
+		FMOD_MODE mode = loop ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF;
+		sound->setMode(mode);
 
-			FMOD::Channel* channel;
-			_fmod_system->playSound(sound, 0, false, &channel);
-		}
+		FMOD::Channel* channel;
+		_fmod_system->playSound(sound, 0, false, &channel);
+		channel->setVolume(volume);
+		channel->setPitch(pitch);
+		channel->setPaused(false);
+
+		return AudioChannel { channel };
 	}
 
 	void AudioSys::stopAudio(const std::string& name)

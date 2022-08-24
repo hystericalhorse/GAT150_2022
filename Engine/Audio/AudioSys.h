@@ -12,6 +12,8 @@ namespace FMOD
 
 namespace en
 {
+	class AudioChannel;
+
 	class AudioSys
 	{
 	public:
@@ -25,7 +27,7 @@ namespace en
 
 		void newAudio(const std::string& name, const std::string& filename);
 
-		void playAudio(const std::string& name, bool loop = false);
+		AudioChannel playAudio(const std::string& name, float volume = 1, float pitch = 1, bool loop = false);
 		void stopAudio(const std::string& name);
 
 	private:
