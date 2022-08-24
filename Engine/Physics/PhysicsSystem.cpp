@@ -9,6 +9,8 @@ namespace en
 	{
 		b2Vec2 gravity{ 0.0f, 9.82f };
 		_world = std::make_unique<b2World>(gravity);
+		_contactlistener = std::make_unique<en::ContactListener>();
+		_world->SetContactListener(_contactlistener.get());
 	}
 
 	void PhysicsSystem::Shutdown()

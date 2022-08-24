@@ -33,6 +33,22 @@ namespace en
 		return Texture::Create(renderer, filename);
 	}
 
+	bool Texture::CreateFromSurface(SDL_Surface* surface, Renderer& renderer)
+	{
+		if (_texture) SDL_DestroyTexture(_texture);
+		
+		_texture = SDL_CreateTextureFromSurface(renderer._renderer, surface);
+		SDL_FreeSurface(surface);
+
+		if (!_texture)
+		{
+			LOG(SDL_GetError());
+			return false;
+		}
+
+		return true;
+	}
+
 	en::Vector2 Texture::getSize() const
 	{
 		SDL_Point point{};

@@ -2,6 +2,7 @@
 #define _PHYSICS_SYSTEM_H
 
 #include "Math/Vector2.h"
+#include "ContactListener.h"
 #include "box2d.h"
 #include <memory>
 
@@ -10,6 +11,8 @@
 
 namespace en
 {
+	class ContactListener;
+
 	class PhysicsSystem
 	{
 	public:
@@ -55,6 +58,7 @@ namespace en
 
 	private:
 		std::unique_ptr<b2World> _world;
+		std::unique_ptr<en::ContactListener> _contactlistener;
 
 		static const float pixelsPerUnit;
 	};

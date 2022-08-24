@@ -43,7 +43,7 @@ namespace en
 
 	void CollisionComponent::OnCollisionBegin(Actor* other)
 	{
-
+		// cout << other->getName() << endl;
 	}
 
 	void CollisionComponent::OnCollisionEnd(Actor* other)

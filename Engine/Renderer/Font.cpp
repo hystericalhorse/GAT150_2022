@@ -1,4 +1,7 @@
 #include "Font.h"
+
+#include "Math/Color.h"
+#include "Core/Logger.h"
 #include <SDL_ttf.h>
 
 namespace en
@@ -40,5 +43,18 @@ namespace en
 	void Font::Load(const std::string& filename, int fontSize)
 	{
 		this->_font = TTF_OpenFont(filename.c_str(), fontSize);
+	}
+
+	SDL_Surface* Font::CreateSurface(const std::string& text, const Color& color)
+	{
+		SDL_Color c {color.r, color.g, color.b, color.a};
+		SDL_Surface* surface = TTF_RenderText_Solid(_font, text.c_str(), c);
+
+		if (!surface)
+		{
+			LOG(SDL_GetError());
+		}
+
+		return surface;
 	}
 }

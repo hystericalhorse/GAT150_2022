@@ -34,6 +34,7 @@
 #include "Components/RigidBodPhysicsComponent.h"
 #include "Components/CollisionComponent.h"
 #include "Components/ModelComponent.h"
+#include "Components/TextComponent.h"
 #include "Components/SpriteAnimComponent.h"
 
 #include "Resource/ResourceManager.h"
