@@ -1,8 +1,25 @@
 #include "PlayerComponent.h"
+
+#include "CollisionComponent.h"
 #include "Engine.h"
+
+#include <functional>
+#include <iostream>
+
+using namespace std::placeholders;
 
 namespace en
 {
+	void PlayerComponent::Init()
+	{
+		auto component = _owner->getComponent<en::CollisionComponent>();
+		if (component)
+		{
+			component->setCollisionEnter(std::bind(&PlayerComponent::OnCollisionBegin, this, _1));
+			component->setCollisionExit(std::bind(&PlayerComponent::OnCollisionEnd, this, _1));
+		}
+	}
+	
 	void PlayerComponent::Update()
 	{
 		auto physics = (_owner->getComponent<en::PhysicsComponent>());
@@ -38,6 +55,16 @@ namespace en
 				if (physics) physics->Force(Vector2::down, _max_velocity);
 			}
 		}
+	}
+
+	void PlayerComponent::OnCollisionBegin(Actor* other)
+	{
+		
+	}
+
+	void PlayerComponent::OnCollisionEnd(Actor* other)
+	{
+		
 	}
 
 	bool PlayerComponent::Write(const rapidjson::Value& value) const

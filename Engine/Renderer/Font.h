@@ -25,7 +25,6 @@ namespace en
 
 		friend class Text;
 
-	private:
 		_TTF_Font* _font = nullptr;
 	};
 }

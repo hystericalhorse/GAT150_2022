@@ -27,7 +27,7 @@
 	    {
 		  "type": "AudioComponent",
 		  "sound_name": "audio/five_hours.mp3",
-		  "pitch": 1.0,
+		  "pitch": 2.0,
 		  "volume": 0.2,
 		  "play_on_start": false,
 		  "loop": true
