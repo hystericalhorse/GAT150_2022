@@ -21,23 +21,6 @@ namespace en
 			if (!(*iter)->_living) iter = _actors.erase(iter);
 			else iter++;
 		}
-
-		for (auto iter_ = _actors.begin(); iter_ != _actors.end(); iter_++)
-		{
-			for (auto _iter = _actors.begin(); _iter != _actors.end(); _iter++)
-			{
-				if (iter_ == _iter) continue;
-
-				float r = (*iter_)->get_radius() + (*_iter)->get_radius();
-				float d = (*iter_)->_transform.position.distance((*_iter)->_transform.position);
-
-				if (d <= r)
-				{
-					(*iter_)->OnCollision((*_iter).get());
-					(*_iter)->OnCollision((*iter_).get());
-				}
-			}
-		}
 	}
 
 	void Scene::Draw(Renderer& renderer)

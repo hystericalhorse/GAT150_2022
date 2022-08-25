@@ -27,6 +27,24 @@ namespace en
 		}
 	};
 
+	template <typename T>
+	class Prototype : public FactoryFloor
+	{
+	public:
+		Protoype(std::unique_ptr<T> instance)
+		{
+			_instance = std::move(instance);
+		}
+
+		std::unique_ptr<GameObject> Create() override
+		{
+			return std::make_unique<T>();
+		}
+
+	private:
+		std::unique_ptr<T> _instance;
+	};
+
 	class Factory : public Singleton<Factory>
 	{
 	public:
@@ -34,6 +52,12 @@ namespace en
 		void Register(const std::string& key)
 		{
 			_fregist[key] = std::make_unique<Creator<T>>();
+		}
+
+		template <typename T>
+		void Register(const std::string& key, std::unique_ptr<T> instance)
+		{
+			_fregist[key] = std::make_unique<Prototype<T>>(std::move(instance));
 		}
 
 		template <typename T>

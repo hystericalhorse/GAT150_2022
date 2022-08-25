@@ -13,6 +13,8 @@ namespace en
 		GameObject() = default;
 		~GameObject() = default;
 
+		virtual std::unique_ptr<GameObject> Clone() = 0;
+
 		virtual void Init() = 0;
 		virtual void Update() = 0;
 	};

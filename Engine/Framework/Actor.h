@@ -22,6 +22,8 @@ namespace en
 			_transform{ transform }
 		{}
 
+		std::unique_ptr<GameObject> Clone() { return std::make_unique<Actor>(); }
+
 		void Init() override;
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
