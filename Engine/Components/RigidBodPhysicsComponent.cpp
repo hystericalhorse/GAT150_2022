@@ -15,9 +15,9 @@ namespace en
 		_body->SetLinearDamping(_damping);
 	}
 
-	void RigidBodPhysicsComponent::Force(const Vector2& direction, const float& magnitude)
+	void RigidBodPhysicsComponent::Force(const Vector2& force)
 	{
-		_body->ApplyForceToCenter({ direction.x * magnitude, direction.y * magnitude }, true);
+		_body->ApplyForceToCenter(VECTOR2_TO_B2VEC2(force), true);
 	}
 
 	void RigidBodPhysicsComponent::Update()

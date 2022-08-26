@@ -12,6 +12,8 @@ namespace en
 	public:
 		SpriteAnimComponent() = default;
 
+		CLONE(SpriteAnimComponent)
+
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
 
@@ -22,7 +24,7 @@ namespace en
 		float fps = 0.0f;
 		int columns, rows = 0;
 		
-		int start_frame, end_frame = 0;
+		int start_frame = 0, end_frame = 0;
 		int frame = 0;
 		float frameTime = 0.0f;
 

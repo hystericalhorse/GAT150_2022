@@ -12,13 +12,15 @@ namespace en
 		RigidBodPhysicsComponent() = default;
 		~RigidBodPhysicsComponent();
 
+		CLONE(RigidBodPhysicsComponent)
+
 		void Init() override;
 		void Update() override;
 
 		bool Write(const rapidjson::Value& value) const override;
 		bool Read(const rapidjson::Value& value) override;
 
-		void Force(const Vector2& direction, const float& magnitude) override;
+		void Force(const Vector2& direction) override;
 
 		friend class CollisionComponent;
 	private:

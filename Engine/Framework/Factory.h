@@ -2,6 +2,7 @@
 #define _FACTORY_H
 
 #include "Singleton.h"
+#include "Core/Logger.h"
 
 #include <memory>
 #include <string>
@@ -14,6 +15,8 @@ namespace en
 	class FactoryFloor // Base Class
 	{
 	public:
+		virtual ~FactoryFloor() = default;
+
 		virtual std::unique_ptr<GameObject> Create() = 0;
 	};
 
@@ -31,14 +34,12 @@ namespace en
 	class Prototype : public FactoryFloor
 	{
 	public:
-		Protoype(std::unique_ptr<T> instance)
-		{
-			_instance = std::move(instance);
-		}
+		~Prototype() = default;
+		Prototype(std::unique_ptr<T> instance) : _instance{ std::move(instance) } {}
 
 		std::unique_ptr<GameObject> Create() override
 		{
-			return std::make_unique<T>();
+			return _instance->Clone();
 		}
 
 	private:
@@ -48,6 +49,11 @@ namespace en
 	class Factory : public Singleton<Factory>
 	{
 	public:
+		void Shutdown()
+		{
+			_fregist.clear();
+		}
+
 		template <typename T>
 		void Register(const std::string& key)
 		{
@@ -69,6 +75,7 @@ namespace en
 				return std::unique_ptr<T>(dynamic_cast<T*>(iter->second->Create().release()));
 			}
 
+			LOG("ERROR: Could not find key %s", key.c_str());
 			return nullptr;
 		}
 

@@ -11,6 +11,7 @@ namespace en
 	{
 	public:
 		Component() = default;
+		Component(const Component& other) {}
 		~Component() = default;
 
 		virtual void Init() override {}

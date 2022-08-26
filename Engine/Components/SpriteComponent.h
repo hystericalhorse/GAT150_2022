@@ -12,6 +12,8 @@ namespace en
 	public:
 		SpriteComponent() = default;
 
+		CLONE(SpriteComponent)
+
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
 
@@ -20,7 +22,7 @@ namespace en
 
 	public:
 		std::shared_ptr<en::Texture> _texture = std::make_shared<en::Texture>();
-		Rect source;
+		Rect source {1, 1, 1, 1};
 
 	};
 }

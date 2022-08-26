@@ -13,6 +13,8 @@ namespace en
 		ModelComponent() = default;
 		~ModelComponent() = default;
 
+		CLONE(ModelComponent)
+
 		void Update() override;
 		void Draw(Renderer& renderer) override;
 

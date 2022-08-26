@@ -11,13 +11,15 @@ namespace en
 	public:
 		PhysicsComponent() = default;
 
+		CLONE(PhysicsComponent)
+
 		virtual void Update() override;
 		void Draw(en::Renderer& renderer) {}
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
-		virtual void Force(const Vector2& direction, const float& magnitude);
+		virtual void Force(const Vector2& force);
 
 	public:
 		Vector2 _velocity { 0, 0 };

@@ -15,6 +15,8 @@ namespace en
 		PlayerComponent() = default;
 		~PlayerComponent() = default;
 
+		CLONE(PlayerComponent)
+
 		void Init() override;
 		void Update() override;
 
@@ -25,7 +27,8 @@ namespace en
 		void OnCollisionEnd(Actor* other) override;
 
 	public:
-		float _max_velocity = 0.0f;
+		float _speed = 10.0;
+		float _jump_multiplier = 1.0;
 
 	};
 }

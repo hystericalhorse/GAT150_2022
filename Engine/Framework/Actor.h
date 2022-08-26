@@ -17,12 +17,10 @@ namespace en
 	{
 	public:
 		Actor() = default;
+		Actor(const Actor& other);
 		~Actor();
-		Actor(const Transform& transform) :
-			_transform{ transform }
-		{}
 
-		std::unique_ptr<GameObject> Clone() { return std::make_unique<Actor>(); }
+		CLONE(Actor)
 
 		void Init() override;
 		virtual void Update() override;
@@ -36,7 +34,10 @@ namespace en
 		void addChild(std::unique_ptr<Actor> child);
 
 		virtual void OnCollision(Actor* other) {}
-		float get_radius() { return 0; /*_model.get_radius() * std::max(_transform.scale.x, _transform.scale.y);*/ }
+
+		void Destroy() { _living = false; }
+		void toggleActive() { (_active) ? _active = false : _active = true; }
+		bool isActive() { return _active; }
 
 		Transform& _Transform() { return this->_transform; }
 		const std::string& getName() { return _name; }
@@ -58,6 +59,8 @@ namespace en
 		
 		friend class Scene;
 	protected:
+		bool _active = true;
+		bool _destroyOnInactive = false;
 		bool _living = true;
 		std::string _name = "";
 		std::string _tag = "";

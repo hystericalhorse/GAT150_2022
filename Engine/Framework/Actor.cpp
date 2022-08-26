@@ -5,6 +5,21 @@
 
 namespace en
 {
+	Actor::Actor(const Actor& other)
+	{
+		this->_name = other._name;
+		this->_tag = other._tag;
+
+		this->_scene = other._scene;
+		if (other._parent) this->_parent = other._parent;
+
+		for (auto& component : other._components)
+		{
+			auto clone = std::unique_ptr<en::Component>( (Component*) component->Clone().release() );
+			addComponent(std::move(clone));
+		}
+	}
+
 	Actor::~Actor()
 	{
 		for (auto& component : _components)
@@ -30,6 +45,16 @@ namespace en
 
 	void Actor::Update()
 	{
+		if (!_active)
+		{
+			if (_destroyOnInactive)
+			{
+				this->Destroy();
+			}
+
+			return;
+		}
+
 		for (auto& component : _components)
 		{
 			component->Update();
@@ -66,9 +91,13 @@ namespace en
 	{
 		std::string& name = _name;
 		std::string& tag = _tag;
+		bool& active = _active;
+		bool& destroy_on_inactive = _destroyOnInactive;
 
 		READ_DATA(value, name);
 		READ_DATA(value, tag);
+		READ_DATA(value, active);
+		READ_DATA(value, destroy_on_inactive);
 		
 		if (value.HasMember("transform")) _transform.Read(value["transform"]);
 
@@ -94,6 +123,8 @@ namespace en
 	
 	void Actor::Draw(Renderer& renderer)
 	{
+		if (!_active) return;
+
 		for (auto& component : _components)
 		{
 			auto r = dynamic_cast<RenderComponent*>(component.get());

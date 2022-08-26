@@ -20,6 +20,8 @@ namespace en
 		Drawable(const Transform& transform, Color& color); // POINT Drawable
 		Drawable(const Transform& transform, float radius, Color& color); // CIRCLE Drawable
 
+		CLONE(Drawable)
+
 		void Draw(Renderer& renderer, const Vector2& offset);
 		void Init() override {}
 		void Update() override {}

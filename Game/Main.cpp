@@ -1,4 +1,4 @@
-#include "Engine.h"
+#include "Gaem.h"
 
 using namespace std;
 int main()
@@ -16,18 +16,9 @@ int main()
 	en::__renderer.newWindow("Game", 800, 600);
 	en::__renderer.setClearColor(en::black);
 
+	unique_ptr<Gaem> game = make_unique<Gaem>();
+
 	// Assets
-
-	// Scene
-	en::Scene scene;
-
-	rapidjson::Document document;
-	bool success = en::json::Load("level.json", document);
-
-	scene.Read(document);
-	scene.Init();
-
-	// Variables
 
 	bool quit = false;
 	while (!quit)
@@ -35,7 +26,7 @@ int main()
 		// Update
 		en::Update(); // Update Engine
 
-		scene.Update();
+		game->Update();
 
 		// Global Checks
 		if (en::__inputsys.keyPressed(en::key_escape)) quit = true;
@@ -44,11 +35,13 @@ int main()
 		en::__renderer.beginFrame();
 
 		// Draw Here
-		scene.Draw(en::__renderer);
+		game->Draw(en::__renderer);
 
 		en::__renderer.endFrame();
 	}
 
 	// System Shutdown
+	game->Shutdown();
+	game.reset();
 	en::Shutdown();
 }

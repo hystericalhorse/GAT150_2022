@@ -14,6 +14,8 @@ namespace en
 	class TextComponent : public RenderComponent
 	{
 	public:
+		CLONE(TextComponent)
+
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
 
@@ -25,9 +27,9 @@ namespace en
 	private:
 		std::string text;
 		std::string font_name;
-		int fontSize;
-		en::Vector2 registration;
-		en::Color color;
+		int fontSize = 24;
+		en::Vector2 registration {0, 0};
+		en::Color color {255, 255, 255, 255};
 
 		std::shared_ptr<en::Font> _font;
 		std::shared_ptr<en::Texture> _texture;

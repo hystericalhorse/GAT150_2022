@@ -17,6 +17,8 @@ namespace en
 	public:
 		CollisionComponent() = default;
 
+		CLONE(CollisionComponent)
+
 		void Init() override;
 		void Update() override;
 

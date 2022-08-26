@@ -26,8 +26,8 @@ namespace en
 		struct CollisionDat
 		{
 			Vector2 size {0, 0};
-			float density = 1.0;
-			float friction = 1.0;
+			float density = 0.8f;
+			float friction = 0.5f;
 			float restitution = 0.3f;
 			bool is_trigger = false;
 		};
@@ -48,12 +48,12 @@ namespace en
 
 		static Vector2 ScreenToWorld(const Vector2& screen)
 		{
-			return screen / pixelsPerUnit;
+			return screen * (1 / pixelsPerUnit);
 		}
 
 		static Vector2 WorldToScreen(const Vector2& world)
 		{
-			return world / pixelsPerUnit;
+			return world * pixelsPerUnit;
 		}
 
 	private:

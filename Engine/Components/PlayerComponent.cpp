@@ -26,34 +26,20 @@ namespace en
 
 		if (en::__inputsys.getKeyDown(en::key_left))
 		{
-			if (_owner->_Transform().position.x > 0)
-			{
-				if (physics) physics->Force(Vector2::left, _max_velocity);
-			}
+			if (physics) physics->Force(Vector2::left * _speed);
+		
 		}
 
 		if (en::__inputsys.getKeyDown(en::key_right))
 		{
-			if (_owner->_Transform().position.x < __renderer.get_window_width())
-			{
-				if (physics) physics->Force(Vector2::right, _max_velocity);
-			}
+			
+			if (physics) physics->Force(Vector2::right * _speed);
+			
 		}
 
-		if (en::__inputsys.getKeyDown(en::key_up))
+		if (en::__inputsys.getKeyState(en::key_up) == en::InputSystem::KeyState::PRESSED)
 		{
-			if (_owner->_Transform().position.y > 0)
-			{
-				if (physics) physics->Force(Vector2::up, _max_velocity);
-			}
-		}
-
-		if (en::__inputsys.getKeyDown(en::key_down))
-		{
-			if (_owner->_Transform().position.y < __renderer.get_window_height())
-			{
-				if (physics) physics->Force(Vector2::down, _max_velocity);
-			}
+			if (physics) physics->Force(Vector2::up * _jump_multiplier * 100);
 		}
 	}
 
@@ -74,8 +60,10 @@ namespace en
 
 	bool PlayerComponent::Read(const rapidjson::Value& value)
 	{
-		float& speed = _max_velocity;
+		float& speed = _speed;
+		float& jump_multiplier = _jump_multiplier;
 		READ_DATA(value, speed);
+		READ_DATA(value, jump_multiplier);
 
 		return true;
 	}

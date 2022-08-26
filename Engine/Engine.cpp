@@ -23,6 +23,8 @@ namespace en
 
 	void Shutdown()
 	{
+		en::Factory::Instance().Shutdown();
+
 		en::__audiosys.Shutdown();
 		en::__renderer.Shutdown();
 		en::__inputsys.Shutdown();

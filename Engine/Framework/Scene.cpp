@@ -59,7 +59,18 @@ namespace en
 			}
 
 			actor->Read(aut);
-			addActor(std::move(actor));
+
+			bool prototype = false;
+			READ_DATA(aut, prototype);
+			if (prototype)
+			{
+				std::string name = actor->getName();
+				Factory::Instance().Register(name, std::move(actor));
+			}
+			else
+			{
+				addActor(std::move(actor));
+			}
 		}
 
 		return true;

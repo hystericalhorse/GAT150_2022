@@ -13,6 +13,8 @@ namespace en
 		AudioComponent() = default;
 		~AudioComponent();
 
+		CLONE(AudioComponent)
+
 		void Init() override;
 		void Update() override;
 		void Play();
@@ -25,7 +27,7 @@ namespace en
 		AudioChannel _channel;
 
 		std::string _sound;
-		bool _playOnWake;
+		bool _playOnWake = false;
 		bool _loop = false;
 		float _volume = 0.5f;
 		float _pitch = 0.5f;

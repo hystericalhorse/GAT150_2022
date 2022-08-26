@@ -8,14 +8,17 @@
 
 namespace en
 {
-	class Actor; // forward declaration for Actor
-	class Renderer; // forward declaration for Renderer
+	class Actor;
+	class Renderer;
 
 	class Scene : public GameObject, public Serializable
 	{
 	public:
 		Scene() = default;
+		Scene(const Scene& other) {}
 		~Scene() = default;
+
+		CLONE(Scene)
 
 		void Init() override;
 		void Update() override;
