@@ -74,8 +74,26 @@ namespace en
 			(*this) /= length();
 		}
 
+		inline float dot(const Vector2& v)
+		{
+			return (x * v.x) + (y * v.y);
+		}
+		
 		inline float angle()
 		{
+			return std::atan2(y, x);
+		}
+
+		inline float angle(const Vector2& v)
+		{
+			return std::acos(dot(v));
+		}
+
+		inline float signed_angle(const Vector2& v)
+		{
+			float y = (x * v.y) - (y * v.x);
+			float x = (x * v.x) + (y * v.y);
+
 			return std::atan2(y, x);
 		}
 
@@ -88,6 +106,7 @@ namespace en
 		}
 
 		friend std::istream& operator >> (std::istream& stream, Vector2& v);
+		friend std::ostream& operator << (std::ostream& stream, const Vector2& v);
 
 		static const Vector2 one;
 		static const Vector2 zero;

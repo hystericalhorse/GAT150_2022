@@ -99,7 +99,7 @@ namespace en
 	{
 		float r = 0.0f;
 
-		for (auto point : _points)
+		for (auto& point : _points)
 		{
 			if (point.length() > r) r = point.length();
 		}

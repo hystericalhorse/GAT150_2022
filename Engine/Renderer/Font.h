@@ -5,9 +5,12 @@
 #include "Resource/Resource.h"
 
 struct _TTF_Font;
+struct SDL_Surface;
 
 namespace en
 {
+	struct Color;
+
 	class Font : public Resource
 	{
 	public:
@@ -18,9 +21,10 @@ namespace en
 		bool Create(std::string filename, ...);
 		void Load(const std::string& filename, int fontSize);
 
+		SDL_Surface* CreateSurface(const std::string& text, const Color& color);
+
 		friend class Text;
 
-	private:
 		_TTF_Font* _font = nullptr;
 	};
 }

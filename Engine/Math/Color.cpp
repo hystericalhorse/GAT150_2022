@@ -20,4 +20,11 @@ namespace en
 
 		return stream;
 	}
+
+	std::ostream& operator << (std::ostream& stream, const Color& c)
+	{
+		stream << (int) c.r << ", " << (int) c.g << ", " << (int) c.b << ", " << (int) c.a;
+
+		return stream;
+	}
 }

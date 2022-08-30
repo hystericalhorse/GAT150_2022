@@ -3,9 +3,9 @@
 
 namespace en
 {
-	void PhysicsComponent::Force(const Vector2& direction, const float& magnitude)
+	void PhysicsComponent::Force(const Vector2& force)
 	{
-		_acceleration = direction * magnitude;
+		_acceleration += force;
 	}
 
 	void PhysicsComponent::Update()
@@ -16,5 +16,19 @@ namespace en
 		_velocity *= _damping;
 
 		_acceleration = Vector2::zero;
+	}
+
+	bool PhysicsComponent::Write(const rapidjson::Value& value) const
+	{
+		return true;
+	}
+
+	bool PhysicsComponent::Read(const rapidjson::Value& value)
+	{
+		float& damping = _damping;
+
+		READ_DATA(value, damping);
+
+		return true;
 	}
 }

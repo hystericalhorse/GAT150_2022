@@ -13,25 +13,40 @@ namespace en
 	class Renderer;
 	class Component;
 
-	class Actor : public GameObject
+	class Actor : public GameObject, public Serializable
 	{
 	public:
 		Actor() = default;
+		Actor(const Actor& other);
 		~Actor();
-		Actor(const Transform& transform) :
-			_transform{ transform }
-		{}
 
+		CLONE(Actor)
+
+		void Init() override;
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
+
+		// Inheritance
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 		void addComponent(std::unique_ptr<Component> component);
 		void addChild(std::unique_ptr<Actor> child);
 
+		Scene* getScene() { return _scene; }
+
 		virtual void OnCollision(Actor* other) {}
-		float get_radius() { return 0; /*_model.get_radius() * std::max(_transform.scale.x, _transform.scale.y);*/ }
+
+		void Destroy() { _living = false; }
+		bool isAlive() { bool a;  (_living) ? a = true : a = false; return a; }
+		void toggleActive() { (_active) ? _active = false : _active = true; }
+		bool isActive() { return _active; }
 
 		Transform& _Transform() { return this->_transform; }
+		const std::string& getName() { return _name; }
+		void setName(const std::string& string) { this->_name = string; }
+		const std::string& getTag() { return _tag; }
+		void setTag(const std::string& string) { this->_tag = string; }
 
 		template<typename T>
 		inline T* getComponent()
@@ -46,9 +61,14 @@ namespace en
 		}
 		
 		friend class Scene;
-		Transform _transform;
 	protected:
+		bool _active = true;
+		bool _destroyOnInactive = false;
 		bool _living = true;
+		std::string _name = "";
+		std::string _tag = "";
+
+		Transform _transform;
 
 		Scene* _scene = nullptr;
 		Actor* _parent = nullptr;

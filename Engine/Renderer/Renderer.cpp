@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include "Core/Logger.h"
 #include "Math/Transform.h"
+#include "Math/Rect.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
 
@@ -59,6 +60,32 @@ namespace en
 		dest.h = (int)size.y;
 
 		SDL_RenderCopyEx(_renderer, texture->_texture, nullptr, &dest, transform.rotation, &center, SDL_FLIP_NONE);
+	}
+
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& regist)
+	{
+		Vector2 size { source.w, source.h };
+		size = size * transform.scale;
+
+		Vector2 origin = size * regist;
+		Vector2 pos = transform.position - origin;
+		const SDL_Point center{ (int)origin.x, (int)origin.y };
+
+		SDL_Rect src;
+		src.x = source.x;
+		src.y = source.y;
+		src.w = source.w;
+		src.h = source.h;
+
+		SDL_Rect dest;
+		// Destination Position
+		dest.x = (int)pos.x;
+		dest.y = (int)pos.y;
+		// Scale
+		dest.w = (int)size.x;
+		dest.h = (int)size.y;
+
+		SDL_RenderCopyEx(_renderer, texture->_texture, &src, &dest, transform.rotation, &center, SDL_FLIP_NONE);
 	}
 
 	void Renderer::newWindow(const char* title, int width, int height)

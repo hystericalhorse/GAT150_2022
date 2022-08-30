@@ -57,6 +57,24 @@ namespace en
 		static Matrix3x3 scale(const Vector2& scale);
 		static Matrix3x3 scale(float scale); // strictly uniform
 
+		Vector2 get_translation() const
+		{
+			return { rows[0][2], rows[1][2] };
+		}
+
+		float get_rotation() const
+		{
+			return std::atan2(rows[1][0], rows[0][0]);
+		}
+
+		Vector2 get_scale() const
+		{
+			Vector2 x = { rows[0][0], rows[0][1] };
+			Vector2 y = { rows[1][0], rows[1][1] };
+
+			return { x.length(), y.length() };
+		}
+
 		static Matrix3x3 rotate(float radians);
 
 		static Matrix3x3 translate(const Vector2& distance);

@@ -1,8 +1,26 @@
 #include "Actor.h"
 #include "Components/RenderComponent.h"
+#include "Core/Logger.h"
+#include "Factory.h"
 
 namespace en
 {
+	Actor::Actor(const Actor& other)
+	{
+		this->_name = other._name;
+		this->_tag = other._tag;
+		this->_transform = other._transform;
+
+		this->_scene = other._scene;
+		if (other._parent) this->_parent = other._parent;
+
+		for (auto& component : other._components)
+		{
+			auto clone = std::unique_ptr<en::Component>( (Component*) component->Clone().release() );
+			addComponent(std::move(clone));
+		}
+	}
+
 	Actor::~Actor()
 	{
 		for (auto& component : _components)
@@ -13,20 +31,39 @@ namespace en
 		if (_parent != nullptr) delete _parent;
 	}
 
-	void Actor::Update()
+	void Actor::Init()
 	{
-		auto component = _components.begin();
-		while (component != _components.end())
+		for (auto& component : _components)
 		{
-			(*component)->Update();
-			component++;
+			component->Init();
 		}
 
-		auto child = _children.begin();
-		while (child != _children.end())
+		for (auto& child : _children)
 		{
-			(*child)->Update();
-			child++;
+			child->Init();
+		}
+	}
+
+	void Actor::Update()
+	{
+		if (!_active)
+		{
+			if (_destroyOnInactive)
+			{
+				this->Destroy();
+			}
+
+			return;
+		}
+
+		for (auto& component : _components)
+		{
+			component->Update();
+		}
+
+		for (auto& child : _children)
+		{
+			child->Update();
 		}
 
 		if (_parent) _transform.update(_parent->_transform.matrix);
@@ -44,9 +81,51 @@ namespace en
 		_children.push_back(std::move(child));
 	}
 
+	bool Actor::Write(const rapidjson::Value& value) const
+	{
+
+
+		return true;
+	}
+
+	bool Actor::Read(const rapidjson::Value& value)
+	{
+		std::string& name = _name;
+		std::string& tag = _tag;
+		bool& active = _active;
+		bool& destroy_on_inactive = _destroyOnInactive;
+
+		READ_DATA(value, name);
+		READ_DATA(value, tag);
+		READ_DATA(value, active);
+		READ_DATA(value, destroy_on_inactive);
+		
+		if (value.HasMember("transform")) _transform.Read(value["transform"]);
+
+		if (value.HasMember("components") && value["components"].IsArray())
+		{
+			for (auto& aut : value["components"].GetArray())
+			{
+				std::string type;
+				READ_DATA(aut, type);
+
+				auto component = Factory::Instance().Retrieve<en::Component>(type);
+				if (!component->Read(aut))
+				{
+					LOG("ERROR: Problem reading component data.");
+				}
+				addComponent(std::move(component));
+			}
+		}
+
+		return true;
+	}
+
 	
 	void Actor::Draw(Renderer& renderer)
 	{
+		if (!_active) return;
+
 		for (auto& component : _components)
 		{
 			auto r = dynamic_cast<RenderComponent*>(component.get());

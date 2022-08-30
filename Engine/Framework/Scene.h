@@ -8,22 +8,31 @@
 
 namespace en
 {
-	class Actor; // forward declaration for Actor
-	class Renderer; // forward declaration for Renderer
+	class Actor;
+	class Renderer;
 
-	class Scene
+	class Scene : public GameObject, public Serializable
 	{
 	public:
 		Scene() = default;
+		Scene(const Scene& other) {}
 		~Scene() = default;
 
-		void Update();
+		CLONE(Scene)
+
+		void Init() override;
+		void Update() override;
+		void Shutdown();
 		void Draw(Renderer& renderer);
 
-		void Add(std::unique_ptr<Actor> actor);
+		// Inheritance
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
+
+		void addActor(std::unique_ptr<Actor> actor);
 		void Remove() {}
 
-		template<typename T>
+		template<typename T = Actor>
 		inline T* getActor()
 		{
 			for (auto& actor : _actors)
@@ -33,6 +42,46 @@ namespace en
 			}
 
 			return nullptr;
+		}
+
+		template<typename T = Actor>
+		inline T* getActor(const std::string& name)
+		{
+			for (auto& actor : _actors)
+			{
+				T* a = dynamic_cast<T*>(actor.get());
+				if (a->_name == name)
+				{
+					return a;
+				}
+				else
+				{
+					continue;
+				}
+			}
+
+			return nullptr;
+		}
+
+		template<typename T = Actor>
+		inline std::vector<T*> getActors(const std::string& tag)
+		{
+			std::vector<T*> actors;
+
+			for (auto& actor : _actors)
+			{
+				T* a = dynamic_cast<T*>(actor.get());
+				if (a->_tag == tag)
+				{
+					actors.push_back(a);
+				}
+				else
+				{
+					continue;
+				}
+			}
+
+			return actors;
 		}
 
 	private:
