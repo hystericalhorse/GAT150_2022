@@ -10,7 +10,7 @@ namespace en
 
 	void SpriteComponent::Draw(Renderer& renderer)
 	{	
-		renderer.Draw(_texture, source, _owner->_Transform());
+		renderer.Draw(_texture, _Source(), _owner->_Transform());
 	}
 
 	bool SpriteComponent::Write(const rapidjson::Value& value) const
@@ -21,6 +21,7 @@ namespace en
 	bool SpriteComponent::Read(const rapidjson::Value& value)
 	{
 		std::string texture;
+		Rect& source = this->_Source();
 		
 		READ_DATA(value, texture);
 		_texture = en::__registry.Get<en::Texture>(texture, __renderer);

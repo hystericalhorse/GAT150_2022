@@ -23,6 +23,16 @@ namespace en
 		}
 	}
 
+	void Scene::Shutdown()
+	{
+		for (auto& actor : _actors)
+		{
+			actor->Destroy();
+		}
+
+		_actors.clear();
+	}
+
 	void Scene::Draw(Renderer& renderer)
 	{
 		for (auto& actor : _actors)

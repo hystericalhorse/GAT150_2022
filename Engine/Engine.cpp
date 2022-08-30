@@ -29,6 +29,7 @@ namespace en
 		en::__renderer.Shutdown();
 		en::__inputsys.Shutdown();
 		en::__registry.Shutdown();
+		en::__physics.Shutdown();
 	}
 
 	void Engine::Register()
@@ -43,6 +44,7 @@ namespace en
 		REGISTER_CLASS(SpriteComponent);
 		REGISTER_CLASS(SpriteAnimComponent);
 		REGISTER_CLASS(TextComponent);
+		REGISTER_CLASS(TilemapComponent);
 	}
 
 	InputSystem __inputsys;
@@ -51,4 +53,5 @@ namespace en
 	AudioSys __audiosys;
 	ResourceManager __registry;
 	PhysicsSystem __physics;
+	EventManager __eventmanager;
 }

@@ -16,7 +16,7 @@ namespace en::json
 		std::ifstream stream(filename);
 		if (!stream.is_open())
 		{
-			LOG("ERROR: Cannot open file %s.", filename.c_str());
+			// LOG("ERROR: Cannot open file %s.", filename.c_str());
 			return false;
 		}
 
@@ -35,7 +35,7 @@ namespace en::json
 	{
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsInt() == false)
 		{
-			LOG("ERROR: Problem reading JSON data %s", name.c_str());
+			// LOG("ERROR: Problem reading JSON data %s", name.c_str());
 			return false;
 		}
 
@@ -61,7 +61,7 @@ namespace en::json
 	{
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsBool() == false)
 		{
-			LOG("ERROR: Problem reading JSON data %s", name.c_str());
+			// LOG("ERROR: Problem reading JSON data %s", name.c_str());
 			return false;
 		}
 
@@ -87,7 +87,7 @@ namespace en::json
 	{
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray() == false || value[name.c_str()].Size() != 2)
 		{
-			LOG("ERROR: Problem reading JSON data %s", name.c_str());
+			// LOG("ERROR: Problem reading JSON data %s", name.c_str());
 			return false;
 		}
 
@@ -111,7 +111,7 @@ namespace en::json
 	{
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray() == false || value[name.c_str()].Size() != 4)
 		{
-			LOG("ERROR: Problem reading JSON data %s", name.c_str());
+			// LOG("ERROR: Problem reading JSON data %s", name.c_str());
 			return false;
 		}
 
@@ -135,7 +135,7 @@ namespace en::json
 	{
 		if (value.HasMember(name.c_str()) == false || value[name.c_str()].IsArray() == false || value[name.c_str()].Size() != 4)
 		{
-			LOG("ERROR: Problem reading JSON data %s", name.c_str());
+			// LOG("ERROR: Problem reading JSON data %s", name.c_str());
 			return false;
 		}
 
@@ -150,6 +150,66 @@ namespace en::json
 			}
 
 			data[i] = array[i].GetInt();
+		}
+
+		return true;
+	}
+
+	bool Get(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data)
+	{
+		if (!value.HasMember(name.c_str()))
+		{
+			// LOG("ERROR: Problem reading JSON data %s", name.c_str());
+			return false;
+		}
+
+		if (!value[name.c_str()].IsArray())
+		{
+			LOG("ERROR: JSON data %s is not an array", name.c_str());
+			return false;
+		}
+
+		auto& array = value[name.c_str()];
+
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++)
+		{
+			if (!array[i].IsString())
+			{
+				LOG("ERROR: JSON data %s is not a string", name.c_str());
+				return false;
+			}
+
+			data.push_back(array[i].GetString());
+		}
+
+		return true;
+	}
+
+	bool Get(const rapidjson::Value& value, const std::string& name, std::vector<int>& data)
+	{
+		if (!value.HasMember(name.c_str()))
+		{
+			// LOG("ERROR: Problem reading JSON data %s", name.c_str());
+			return false;
+		}
+
+		if (!value[name.c_str()].IsArray())
+		{
+			LOG("ERROR: JSON data %s is not an array", name.c_str());
+			return false;
+		}
+
+		auto& array = value[name.c_str()];
+
+		for (rapidjson::SizeType i = 0; i < array.Size(); i++)
+		{
+			if (!array[i].IsInt())
+			{
+				LOG("ERROR: JSON data %s is not an int", name.c_str());
+				return false;
+			}
+
+			data.push_back(array[i].GetInt());
 		}
 
 		return true;

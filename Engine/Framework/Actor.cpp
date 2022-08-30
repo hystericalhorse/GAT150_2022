@@ -9,6 +9,7 @@ namespace en
 	{
 		this->_name = other._name;
 		this->_tag = other._tag;
+		this->_transform = other._transform;
 
 		this->_scene = other._scene;
 		if (other._parent) this->_parent = other._parent;

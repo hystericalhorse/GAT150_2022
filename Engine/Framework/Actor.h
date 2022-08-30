@@ -33,9 +33,12 @@ namespace en
 		void addComponent(std::unique_ptr<Component> component);
 		void addChild(std::unique_ptr<Actor> child);
 
+		Scene* getScene() { return _scene; }
+
 		virtual void OnCollision(Actor* other) {}
 
 		void Destroy() { _living = false; }
+		bool isAlive() { bool a;  (_living) ? a = true : a = false; return a; }
 		void toggleActive() { (_active) ? _active = false : _active = true; }
 		bool isActive() { return _active; }
 

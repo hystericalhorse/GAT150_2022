@@ -17,6 +17,7 @@ int main()
 	en::__renderer.setClearColor(en::black);
 
 	unique_ptr<Gaem> game = make_unique<Gaem>();
+	game->Init();
 
 	// Assets
 

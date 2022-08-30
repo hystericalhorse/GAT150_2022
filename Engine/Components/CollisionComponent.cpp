@@ -8,6 +8,12 @@ namespace en
 		auto component = _owner->getComponent<en::RigidBodPhysicsComponent>();
 		if (component)
 		{
+			if (data.size.x == 0 && data.size.y == 0)
+			{
+				auto renderComp = _owner->getComponent<en::RenderComponent>();
+				if (renderComp) data.size = Vector2 { renderComp->_Source().w, renderComp->_Source().h };
+			}
+
 			en::__physics.SetCollisionBox(component->_body, data, _owner);
 		}
 	}
@@ -48,6 +54,7 @@ namespace en
 
 	void CollisionComponent::OnCollisionEnd(Actor* other)
 	{
-		if (_exitFunction) _exitFunction(other);
+		// This causes an Access Reading Violation during application closing.
+		// if (_exitFunction) _exitFunction(other);
 	}
 }

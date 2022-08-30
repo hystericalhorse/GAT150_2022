@@ -1,0 +1,39 @@
+{
+  "actors":
+  [
+	{
+	  "type": "Actor",
+	  "name": "Coin",
+	  "prototype": true,
+	  "transform":
+	  {
+		"position": [ 400.0, 300.0 ],
+		"scale": [ 1.0, 1.0 ],
+		"rotation": 0.0
+	  },
+	  "components":
+	  [
+	    {
+		  "type": "SpriteComponent",
+		  "texture": "image/cion.png"
+		},
+		{
+			"type": "RigidBodPhysicsComponent",
+			"velocity": [ 0.0, 0.0 ],
+			"acceleration": [ 0.0, 0.0 ],
+			"damping": 0.99,
+			"gravity_scale": 1.0,
+			"constrain_rotation": false,
+			"is_dynamic": true
+		},
+		{
+		  "type": "CollisionComponent",
+		  "density": 1.0,
+		  "friction": 0.0,
+		  "restitution": 	0.3,
+		  "is_trigger": false
+		}
+	  ]
+	}
+  ]
+}

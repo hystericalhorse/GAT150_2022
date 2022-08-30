@@ -1,6 +1,7 @@
 #ifndef _COMPONENT_COLLISION_H
 #define _COMPONENT_COLLISION_H
 
+#include "Framework/Actor.h"
 #include "Framework/Component.h"
 #include "Physics/Collidable.h"
 #include "Physics/PhysicsSystem.h"
@@ -12,7 +13,7 @@ namespace en
 	class CollisionComponent : public Component, public Collidable
 	{
 	public:
-		using actorptr = std::function<void(Actor*)>;
+		using actorptr = std::function<void(en::Actor*)>;
 
 	public:
 		CollisionComponent() = default;
@@ -31,10 +32,11 @@ namespace en
 		void setCollisionEnter(actorptr function) { _enterFunction = function; }
 		void setCollisionExit(actorptr function) { _exitFunction = function; }
 
-	private:
+		friend class Actor;
+	public:
 		PhysicsSystem::CollisionDat data;
-		actorptr _enterFunction;
-		actorptr _exitFunction;
+		actorptr _enterFunction = NULL;
+		actorptr _exitFunction = NULL;
 
 	};
 }

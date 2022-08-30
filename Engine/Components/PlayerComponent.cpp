@@ -45,12 +45,23 @@ namespace en
 
 	void PlayerComponent::OnCollisionBegin(Actor* other)
 	{
+		if (other->getName() == "Coin")
+		{
+			Event event;
+			event.name = "EVT_EXAMPLE";
+			event.data = 1;
+
+			en::__eventmanager.Notify(event);
+
+			other->Destroy();
+		}
+
 		
 	}
 
 	void PlayerComponent::OnCollisionEnd(Actor* other)
 	{
-		
+		// TODO
 	}
 
 	bool PlayerComponent::Write(const rapidjson::Value& value) const

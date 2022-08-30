@@ -2,6 +2,7 @@
 #define _COMPONENT_RENDER_H
 
 #include "Framework/Component.h"
+#include "Math/Rect.h"
 #include <memory>
 
 namespace en
@@ -13,8 +14,9 @@ namespace en
 	public:
 		virtual void Draw(Renderer& renderer) = 0;
 
+		virtual Rect& _Source() { return _source; }
 	private:
-
+		Rect _source {1, 1, 1, 1};
 
 	};
 }

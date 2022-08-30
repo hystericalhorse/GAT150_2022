@@ -26,6 +26,7 @@
 #include "Framework/Game.h"
 #include "Framework/Factory.h"
 #include "Framework/Singleton.h"
+#include "Framework/EventManager.h"
 
 #include "Components/PlayerComponent.h"
 #include "Components/SpriteComponent.h"
@@ -36,6 +37,7 @@
 #include "Components/ModelComponent.h"
 #include "Components/TextComponent.h"
 #include "Components/SpriteAnimComponent.h"
+#include "Components/TilemapComponent.h"
 
 #include "Resource/ResourceManager.h"
 
@@ -55,6 +57,7 @@ namespace en
 	extern AudioSys __audiosys;
 	extern ResourceManager __registry;
 	extern PhysicsSystem __physics;
+	extern EventManager __eventmanager;
 
 	class Engine : public Singleton<Engine>
 	{

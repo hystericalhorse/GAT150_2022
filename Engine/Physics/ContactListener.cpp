@@ -15,12 +15,12 @@ namespace en
 			Actor* actorA = (Actor*)(fixA->GetUserData().pointer);
 			Actor* actorB = (Actor*)(fixB->GetUserData().pointer);
 			
-			if (actorA->getComponent<en::CollisionComponent>())
+			if (actorA->isAlive() && actorA->getComponent<en::CollisionComponent>())
 			{
 				actorA->getComponent<en::CollisionComponent>()->OnCollisionBegin(actorB);
 			}
 
-			if (actorB->getComponent<en::CollisionComponent>())
+			if (actorB->isAlive() && actorB->getComponent<en::CollisionComponent>())
 			{
 				actorB->getComponent<en::CollisionComponent>()->OnCollisionBegin(actorA);
 			}
@@ -38,12 +38,12 @@ namespace en
 			Actor* actorA = (Actor*)(fixA->GetUserData().pointer);
 			Actor* actorB = (Actor*)(fixB->GetUserData().pointer);
 
-			if (actorA->getComponent<en::CollisionComponent>())
+			if (actorA->isAlive() && actorA->getComponent<en::CollisionComponent>())
 			{
 				actorA->getComponent<en::CollisionComponent>()->OnCollisionEnd(actorB);
 			}
 
-			if (actorB->getComponent<en::CollisionComponent>())
+			if (actorB->isAlive() && actorB->getComponent<en::CollisionComponent>())
 			{
 				actorB->getComponent<en::CollisionComponent>()->OnCollisionEnd(actorA);
 			}

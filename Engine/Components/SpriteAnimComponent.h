@@ -20,6 +20,8 @@ namespace en
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
+		Rect& _Source() override;
+
 	public:
 		float fps = 0.0f;
 		int columns, rows = 0;

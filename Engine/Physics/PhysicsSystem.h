@@ -25,7 +25,7 @@ namespace en
 
 		struct CollisionDat
 		{
-			Vector2 size {0, 0};
+			Vector2 size { 0.0f, 0.0f };
 			float density = 0.8f;
 			float friction = 0.5f;
 			float restitution = 0.3f;

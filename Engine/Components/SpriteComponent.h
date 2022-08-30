@@ -22,7 +22,6 @@ namespace en
 
 	public:
 		std::shared_ptr<en::Texture> _texture = std::make_shared<en::Texture>();
-		Rect source {1, 1, 1, 1};
 
 	};
 }

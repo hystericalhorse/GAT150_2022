@@ -22,6 +22,7 @@ namespace en
 
 		void Init() override;
 		void Update() override;
+		void Shutdown();
 		void Draw(Renderer& renderer);
 
 		// Inheritance
@@ -31,7 +32,7 @@ namespace en
 		void addActor(std::unique_ptr<Actor> actor);
 		void Remove() {}
 
-		template<typename T>
+		template<typename T = Actor>
 		inline T* getActor()
 		{
 			for (auto& actor : _actors)
@@ -41,6 +42,46 @@ namespace en
 			}
 
 			return nullptr;
+		}
+
+		template<typename T = Actor>
+		inline T* getActor(const std::string& name)
+		{
+			for (auto& actor : _actors)
+			{
+				T* a = dynamic_cast<T*>(actor.get());
+				if (a->_name == name)
+				{
+					return a;
+				}
+				else
+				{
+					continue;
+				}
+			}
+
+			return nullptr;
+		}
+
+		template<typename T = Actor>
+		inline std::vector<T*> getActors(const std::string& tag)
+		{
+			std::vector<T*> actors;
+
+			for (auto& actor : _actors)
+			{
+				T* a = dynamic_cast<T*>(actor.get());
+				if (a->_tag == tag)
+				{
+					actors.push_back(a);
+				}
+				else
+				{
+					continue;
+				}
+			}
+
+			return actors;
 		}
 
 	private:

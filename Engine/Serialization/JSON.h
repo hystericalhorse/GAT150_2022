@@ -3,6 +3,7 @@
 
 #include "Document.h"
 #include <string>
+#include <vector>
 
 #define READ_DATA(value, data) en::json::Get(value, #data, data)
 
@@ -23,6 +24,8 @@ namespace en
 		bool Get(const rapidjson::Value& value, const std::string& name, en::Vector2& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, en::Color& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, en::Rect& data);
+		bool Get(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data);
+		bool Get(const rapidjson::Value& value, const std::string& name, std::vector<int>& data);
 	}
 }
 

@@ -93,6 +93,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)ThirdParty\SDL2\include;$(ProjectDir)ThirdParty\fmod\core\inc;$(ProjectDir)ThirdParty\rapidjson;$(ProjectDir)ThirdParty\box2d\include\box2d;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -113,6 +114,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)ThirdParty\SDL2\include;$(ProjectDir)ThirdParty\fmod\core\inc;$(ProjectDir)ThirdParty\rapidjson;$(ProjectDir)ThirdParty\box2d\include\box2d;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -154,6 +156,7 @@
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(ProjectDir)ThirdParty\SDL2\include;$(ProjectDir)ThirdParty\fmod\core\inc;$(ProjectDir)ThirdParty\rapidjson;$(ProjectDir)ThirdParty\box2d\include\box2d;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -179,6 +182,7 @@
     <ClCompile Include="Components\SpriteAnimComponent.cpp" />
     <ClCompile Include="Components\SpriteComponent.cpp" />
     <ClCompile Include="Components\TextComponent.cpp" />
+    <ClCompile Include="Components\TilemapComponent.cpp" />
     <ClCompile Include="Core\File.cpp" />
     <ClCompile Include="Core\Logger.cpp" />
     <ClCompile Include="Core\Memory.cpp" />
@@ -187,6 +191,7 @@
     <ClCompile Include="Framework\Actor.cpp" />
     <ClCompile Include="Framework\Background.cpp" />
     <ClCompile Include="Framework\Drawable.cpp" />
+    <ClCompile Include="Framework\EventManager.cpp" />
     <ClCompile Include="Framework\Scene.cpp" />
     <ClCompile Include="Input\InputSystem.cpp" />
     <ClCompile Include="Math\Color.cpp" />
@@ -217,6 +222,7 @@
     <ClInclude Include="Components\SpriteAnimComponent.h" />
     <ClInclude Include="Components\SpriteComponent.h" />
     <ClInclude Include="Components\TextComponent.h" />
+    <ClInclude Include="Components\TilemapComponent.h" />
     <ClInclude Include="Core\File.h" />
     <ClInclude Include="Core\Logger.h" />
     <ClInclude Include="Core\Memory.h" />
@@ -226,6 +232,8 @@
     <ClInclude Include="Framework\Background.h" />
     <ClInclude Include="Framework\Component.h" />
     <ClInclude Include="Framework\Drawable.h" />
+    <ClInclude Include="Framework\Event.h" />
+    <ClInclude Include="Framework\EventManager.h" />
     <ClInclude Include="Framework\Factory.h" />
     <ClInclude Include="Framework\Game.h" />
     <ClInclude Include="Framework\GameObject.h" />

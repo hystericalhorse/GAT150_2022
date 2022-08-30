@@ -29,7 +29,7 @@ namespace en
 
 	void SpriteAnimComponent::Draw(Renderer& renderer)
 	{
-		renderer.Draw(_texture, source, _owner->_Transform());
+		renderer.Draw(_texture, this->_Source(), _owner->_Transform());
 	}
 
 	bool SpriteAnimComponent::Write(const rapidjson::Value& value) const
@@ -51,5 +51,20 @@ namespace en
 		READ_DATA(value, end_frame);		
 
 		return true;
+	}
+
+	Rect& SpriteAnimComponent::_Source()
+	{
+		Vector2 cellSize = _texture->getSize() / Vector2{ columns, rows };
+
+		int column = (frame - 1) % columns;
+		int row = (frame - 1) / columns;
+
+		source.x = (int) (column * cellSize.x);
+		source.y = (int) (row * cellSize.y);
+		source.w = (int) (cellSize.x);
+		source.h = (int) (cellSize.y);
+
+		return source;
 	}
 }
