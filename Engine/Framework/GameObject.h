@@ -4,7 +4,7 @@
 #include "Serialization/Serializable.h"
 
 #define CLONE(class) std::unique_ptr<en::GameObject> Clone() override { return std::make_unique<class>(*this); }
-#define REGISTER_CLASS(class) Factory::Instance().Register<class>(#class);
+#define REGISTER_CLASS(class) en::Factory::Instance().Register<class>(#class);
 
 namespace en
 {

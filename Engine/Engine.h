@@ -39,6 +39,8 @@
 #include "Components/SpriteAnimComponent.h"
 #include "Components/TilemapComponent.h"
 
+#include "Components/CharacterComponent.h"
+
 #include "Resource/ResourceManager.h"
 
 #include <memory>

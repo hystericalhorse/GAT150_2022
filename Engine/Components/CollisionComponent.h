@@ -35,6 +35,8 @@ namespace en
 		friend class Actor;
 	public:
 		PhysicsSystem::CollisionDat data;
+		Vector2 scale_offset { 0.5f, 0.5f };
+
 		actorptr _enterFunction = NULL;
 		actorptr _exitFunction = NULL;
 

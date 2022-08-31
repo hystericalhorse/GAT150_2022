@@ -40,6 +40,7 @@ namespace en
 		void Destroy() { _living = false; }
 		bool isAlive() { bool a;  (_living) ? a = true : a = false; return a; }
 		void toggleActive() { (_active) ? _active = false : _active = true; }
+		void toggleActive(bool b) { _active = b; }
 		bool isActive() { return _active; }
 
 		Transform& _Transform() { return this->_transform; }
@@ -65,6 +66,7 @@ namespace en
 		bool _active = true;
 		bool _destroyOnInactive = false;
 		bool _living = true;
+		float _lifespan = 0.0f;
 		std::string _name = "";
 		std::string _tag = "";
 

@@ -6,18 +6,11 @@
 #include <functional>
 #include <iostream>
 
-using namespace std::placeholders;
-
 namespace en
 {
 	void PlayerComponent::Init()
 	{
-		auto component = _owner->getComponent<en::CollisionComponent>();
-		if (component)
-		{
-			component->setCollisionEnter(std::bind(&PlayerComponent::OnCollisionBegin, this, _1));
-			component->setCollisionExit(std::bind(&PlayerComponent::OnCollisionEnd, this, _1));
-		}
+		CharacterComponent::Init();
 	}
 	
 	void PlayerComponent::Update()
@@ -26,20 +19,27 @@ namespace en
 
 		if (en::__inputsys.getKeyDown(en::key_left))
 		{
+			_direction = en::Vector2::left;
 			if (physics) physics->Force(Vector2::left * _speed);
-		
 		}
 
 		if (en::__inputsys.getKeyDown(en::key_right))
 		{
-			
+			_direction = en::Vector2::right;
 			if (physics) physics->Force(Vector2::right * _speed);
-			
 		}
 
 		if (en::__inputsys.getKeyState(en::key_up) == en::InputSystem::KeyState::PRESSED)
 		{
+			_direction = en::Vector2::up;
 			if (physics) physics->Force(Vector2::up * _jump_multiplier * 100);
+		}
+
+		auto render = (_owner->getComponent<en::RenderComponent>());
+		if (render)
+		{
+			if (_direction == en::Vector2::right) render->Flip(false);
+			if (_direction == en::Vector2::left) render->Flip(true);
 		}
 	}
 
@@ -55,8 +55,6 @@ namespace en
 
 			other->Destroy();
 		}
-
-		
 	}
 
 	void PlayerComponent::OnCollisionEnd(Actor* other)
@@ -71,11 +69,19 @@ namespace en
 
 	bool PlayerComponent::Read(const rapidjson::Value& value)
 	{
-		float& speed = _speed;
+		CharacterComponent::Read(value);
+		
 		float& jump_multiplier = _jump_multiplier;
-		READ_DATA(value, speed);
 		READ_DATA(value, jump_multiplier);
 
 		return true;
+	}
+
+	void PlayerComponent::onNotification(const Event& event)
+	{
+		if (event.name == "EVENT_DAMAGE")
+		{
+			_health -= std::get<float>(event.data);
+		}
 	}
 }
