@@ -14,7 +14,16 @@ namespace en
 				if (renderComp) data.size = Vector2 { renderComp->_Source().w, renderComp->_Source().h };
 			}
 
-			en::__physics.SetCollisionBox(component->_body, data, _owner);
+			data.size *= _owner->_Transform().scale * scale_offset;
+
+			if (component->_body->GetType() == b2_staticBody)
+			{
+				__physics.SetStaticCollisionBox(component->_body, data, _owner);
+			}
+			else
+			{
+				__physics.SetCollisionBox(component->_body, data, _owner);
+			}
 		}
 	}
 
@@ -43,6 +52,7 @@ namespace en
 		READ_DATA(value, friction);
 		READ_DATA(value, restitution);
 		READ_DATA(value, is_trigger);
+		READ_DATA(value, scale_offset);
 
 		return true;
 	}

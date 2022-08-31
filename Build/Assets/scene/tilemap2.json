@@ -1,0 +1,83 @@
+{
+	"actors":[
+		{
+			"type":"Actor",
+			"name":"br_tile0",
+			"tag":"Wall",
+			"prototype":true,
+			"transform":{
+				"scale":[
+					4.0,
+					4.0
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"texture":"image/backrooms_tileset.png",
+					"source":[
+						0,
+						0,
+						32,
+						32
+					]
+				}
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"br_tile1",
+			"tag":"Wall",
+			"prototype":true,
+			"transform":{
+				"scale":[
+					4.0,
+					4.0
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"texture":"image/backrooms_tileset.png",
+					"source":[
+						0,
+						32,
+						32,
+						32
+					]
+				}
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"World",
+			"transform":{
+				"position":[
+					32.0,
+					32.0
+				]
+			},
+			"components":[
+				{
+					"type":"TilemapComponent",
+					"num_columns": 13,
+					"num_rows": 10,
+					"size": [64.0, 64.0],
+					"tile_names": ["", "br_tile0", "br_tile1"],
+					"tiles": [
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+							]
+				}    
+			]
+		}
+	]
+}

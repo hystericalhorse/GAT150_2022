@@ -29,13 +29,14 @@
 		},
 		{
 			"type": "RigidBodPhysicsComponent",
-			"damping": 0.99,
+			"damping": 0.7,
 			"gravity_scale": 1.0,
 			"constrain_rotation": true,
 			"is_dynamic": true
 		},
 		{
 			"type": "CollisionComponent",
+			"size": [ 42.0, 64.0 ],
 			"restitution": 0.0,
 			"is_trigger": false
 		}

@@ -26,7 +26,7 @@ namespace en
 
 		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0, const Vector2& scale = Vector2{1, 1}, const Vector2& regist = Vector2{ .5, .5 });
 		void Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& regist = Vector2{ .5, .5 });
-		void Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& regist = Vector2{ .5, .5 });
+		void Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& regist = Vector2{ .5, .5 }, bool flipH = false);
 
 		void newWindow(const char* title, int width, int height);
 		void beginFrame();

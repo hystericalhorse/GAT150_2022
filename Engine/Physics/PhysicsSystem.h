@@ -45,6 +45,7 @@ namespace en
 		void DestroyBody(b2Body* body);
 
 		void SetCollisionBox(b2Body* body, const CollisionDat& data, class Actor* actor = nullptr);
+		void SetStaticCollisionBox(b2Body* body, const CollisionDat& data, class Actor* actor = nullptr);
 
 		static Vector2 ScreenToWorld(const Vector2& screen)
 		{

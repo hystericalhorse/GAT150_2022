@@ -1,15 +1,14 @@
 #ifndef _COMPONENT_PLAYER_H
 #define _COMPONENT_PLAYER_H
 
-#include "Framework/Component.h"
-#include "Physics/Collidable.h"
+#include "CharacterComponent.h"
 #include "Math/Vector2.h"
 
 namespace en
 {
 	class InputSystem;
 
-	class PlayerComponent : public Component, public Collidable
+	class PlayerComponent : public CharacterComponent
 	{
 	public:
 		PlayerComponent() = default;
@@ -23,11 +22,13 @@ namespace en
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
-		void OnCollisionBegin(Actor* other) override;
-		void OnCollisionEnd(Actor* other) override;
+		virtual void OnCollisionBegin(Actor* other) override;
+		virtual void OnCollisionEnd(Actor* other) override;
+
+		void onNotification(const Event& event) override;
 
 	public:
-		float _speed = 10.0;
+		Vector2 _direction = en::Vector2::zero;
 		float _jump_multiplier = 1.0;
 
 	};

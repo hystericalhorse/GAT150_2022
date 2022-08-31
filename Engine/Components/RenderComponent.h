@@ -3,6 +3,7 @@
 
 #include "Framework/Component.h"
 #include "Math/Rect.h"
+#include "Math/Vector2.h"
 #include <memory>
 
 namespace en
@@ -15,8 +16,12 @@ namespace en
 		virtual void Draw(Renderer& renderer) = 0;
 
 		virtual Rect& _Source() { return _source; }
+		void Flip(bool flip = true) { _flipH = flip; }
+		bool _Flip() { return _flipH; }
 	private:
 		Rect _source {1, 1, 1, 1};
+		bool _flipH = false;
+		Vector2 _registration { 0.5f, 0.5f };
 
 	};
 }

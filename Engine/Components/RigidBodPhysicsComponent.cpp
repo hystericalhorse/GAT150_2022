@@ -24,7 +24,9 @@ namespace en
 	{
 		Vector2 position = B2VEC2_TO_VECTOR2(_body->GetPosition());
 		_owner->_Transform().position = PhysicsSystem::WorldToScreen(position);
-		_owner->_Transform().rotation = _body->GetAngle();
+		_owner->_Transform().rotation = en::degrees(_body->GetAngle());
+
+		_velocity = B2VEC2_TO_VECTOR2(_body->GetLinearVelocity());
 	}
 
 	bool RigidBodPhysicsComponent::Write(const rapidjson::Value& value) const

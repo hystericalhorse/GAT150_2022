@@ -19,6 +19,12 @@ namespace en
 
 		std::variant<int, bool, float, std::string, void*> data;
 	};
+
+	class Notified
+	{
+	public:
+		virtual void onNotification(const Event& event) = 0;
+	};
 }
 
 #endif // _EVENT_H

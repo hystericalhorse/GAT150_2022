@@ -1,7 +1,5 @@
 #include "Actor.h"
-#include "Components/RenderComponent.h"
-#include "Core/Logger.h"
-#include "Factory.h"
+#include "Engine.h"
 
 namespace en
 {
@@ -10,6 +8,7 @@ namespace en
 		this->_name = other._name;
 		this->_tag = other._tag;
 		this->_transform = other._transform;
+		this->_lifespan = other._lifespan;
 
 		this->_scene = other._scene;
 		if (other._parent) this->_parent = other._parent;
@@ -30,7 +29,7 @@ namespace en
 
 		if (_parent != nullptr) delete _parent;
 	}
-
+	 
 	void Actor::Init()
 	{
 		for (auto& component : _components)
@@ -55,6 +54,14 @@ namespace en
 
 			return;
 		}
+
+		/*
+		if (_lifespan != 0)
+		{
+			_lifespan -= en::__time.ci_time;
+			if (_lifespan <= 0) this->Destroy();
+		}
+		*/
 
 		for (auto& component : _components)
 		{
@@ -94,12 +101,15 @@ namespace en
 		std::string& tag = _tag;
 		bool& active = _active;
 		bool& destroy_on_inactive = _destroyOnInactive;
+		float& lifespan = _lifespan;
 
 		READ_DATA(value, name);
 		READ_DATA(value, tag);
 		READ_DATA(value, active);
 		READ_DATA(value, destroy_on_inactive);
-		
+
+		if (value.HasMember("lifespan")) READ_DATA(value, lifespan);
+
 		if (value.HasMember("transform")) _transform.Read(value["transform"]);
 
 		if (value.HasMember("components") && value["components"].IsArray())

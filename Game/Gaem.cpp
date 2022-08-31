@@ -1,13 +1,17 @@
 #include "Gaem.h"
 
+#include "GameComponents/EnemyComponent.h"
+
 void Gaem::Init()
 {
+	REGISTER_CLASS(EnemyComponent);
+
 	_scene = std::make_unique<en::Scene>();
 
 	rapidjson::Document document;
 	std::vector<std::string> sceneNames = { "scene/decoration.json", "scene/prototypes.json", "scene/tilemap.json", "scene/players.json" };
 
-	for (auto object : sceneNames)
+	for (auto& object : sceneNames)
 	{
 		bool success = en::json::Load(object, document);
 		if (!success) { LOG("ERROR: Could not load scene %s", object.c_str()); continue; }
@@ -32,17 +36,19 @@ void Gaem::Update()
 		
 		if (en::__inputsys.getKeyState(en::key_space) == en::InputSystem::KeyState::PRESSED)
 		{
+			auto component = _scene->getActor("Title");
+			if (component) component->toggleActive();
+
 			_gamestate = gameState::GameStart;
 		}
 		break;
 	case Gaem::gameState::GameStart:
-		for (size_t i = 0; i < en::random(4); i++)
+
+		for (int i = 0; i < 2; i++)
 		{
 			auto actor = en::Factory::Instance().Retrieve<en::Actor>("Coin");
-			actor->_Transform().position = { en::random(400), 100 };
+			actor->_Transform().position = { en::random(400), 100};
 			actor->Init();
-
-			_scene->addActor(std::move(actor));
 		}
 
 		_gamestate = gameState::Game;
