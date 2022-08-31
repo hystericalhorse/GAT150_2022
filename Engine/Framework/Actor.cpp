@@ -55,13 +55,11 @@ namespace en
 			return;
 		}
 
-		/*
 		if (_lifespan != 0)
 		{
 			_lifespan -= en::__time.ci_time;
 			if (_lifespan <= 0) this->Destroy();
 		}
-		*/
 
 		for (auto& component : _components)
 		{

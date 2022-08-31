@@ -49,6 +49,8 @@ void Gaem::Update()
 			auto actor = en::Factory::Instance().Retrieve<en::Actor>("Coin");
 			actor->_Transform().position = { en::random(400), 100};
 			actor->Init();
+
+			_scene->addActor(std::move(actor));
 		}
 
 		_gamestate = gameState::Game;
