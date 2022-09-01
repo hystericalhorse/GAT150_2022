@@ -55,7 +55,7 @@ namespace en
 			return;
 		}
 
-		if (_lifespan != 0)
+		if (_lifespan != 0.0)
 		{
 			_lifespan -= en::__time.ci_time;
 			if (_lifespan <= 0) this->Destroy();
@@ -105,8 +105,7 @@ namespace en
 		READ_DATA(value, tag);
 		READ_DATA(value, active);
 		READ_DATA(value, destroy_on_inactive);
-
-		if (value.HasMember("lifespan")) READ_DATA(value, lifespan);
+		READ_DATA(value, lifespan);
 
 		if (value.HasMember("transform")) _transform.Read(value["transform"]);
 

@@ -4,6 +4,7 @@
 #include "Texture.h"
 #include "Math/Vector2.h"
 #include "Math/Color.h"
+#include "Math/Matrix3x3.h"
 
 struct SDL_Renderer; // Forward Declaration
 struct SDL_Window; // Forward Declaration
@@ -14,6 +15,7 @@ namespace en
 	struct Vector2;
 	struct Color;
 	struct Rect;
+	struct Matrix3x3;
 
 	class Renderer
 	{
@@ -27,6 +29,7 @@ namespace en
 		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float angle = 0, const Vector2& scale = Vector2{1, 1}, const Vector2& regist = Vector2{ .5, .5 });
 		void Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& regist = Vector2{ .5, .5 });
 		void Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& regist = Vector2{ .5, .5 }, bool flipH = false);
+		void Draw2(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& regist = Vector2{ .5, .5 }, bool flipH = false);
 
 		void newWindow(const char* title, int width, int height);
 		void beginFrame();
@@ -51,6 +54,12 @@ namespace en
 
 		SDL_Renderer* _renderer{ nullptr };
 		SDL_Window* _window{ nullptr };
+
+		Matrix3x3 _view;
+		Matrix3x3 _viewport;
+
+		void setView(const Matrix3x3& view) { _view = view; }
+		void setViewport(const Matrix3x3& viewport) { _viewport = viewport; }
 
 	private:
 		int width = 0;

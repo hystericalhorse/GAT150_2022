@@ -20,12 +20,19 @@
         },
 		{
 			"type": "SpriteAnimComponent",
-			"fps": 12.0,
-			"columns": 4,
-			"rows": 1,
-			"start_frame": 1,
-			"end_frame": 4,
-			"texture": "image/s_wolf_running.png"
+			"default_sequence": "running",
+			"sequences":
+			[
+				{
+				  "name": "running",
+				  "fps": 12.0,
+				  "columns": 4,
+				  "rows": 1,
+				  "start_frame": 1,
+				  "end_frame": 4,
+				  "texture": "image/s_wolf_running.png"
+				}
+			]
 		},
 		{
 			"type": "RigidBodPhysicsComponent",

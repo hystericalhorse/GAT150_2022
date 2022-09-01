@@ -19,7 +19,7 @@ namespace en
 		Vector2 position { 0,0 };
 		Vector2 scale { 1, 1 };
 		float rotation = 0.0f; // rotation in degrees
-		Matrix3x3 matrix = Matrix3x3::identity;
+		Matrix3x3 matrix;
 
 		virtual bool Write(const rapidjson::Value& value) const override
 		{

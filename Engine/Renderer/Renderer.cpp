@@ -5,6 +5,8 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 
+#include <iostream>
+
 namespace en
 {
 	void Renderer::Init()
@@ -12,6 +14,9 @@ namespace en
 		SDL_Init(SDL_INIT_VIDEO);
 
 		TTF_Init();
+
+		_view = Matrix3x3::identity;
+		_viewport = Matrix3x3::identity;
 	}
 
 	void Renderer::Shutdown()
@@ -64,12 +69,42 @@ namespace en
 
 	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& regist, bool flipH)
 	{
+		Matrix3x3 mx = _viewport * _view * transform.matrix;
+
 		Vector2 size { source.w, source.h };
-		size = size * transform.scale;
+		size *= mx.get_scale();
+
+		Vector2 origin = size * regist;
+		Vector2 pos = mx.get_translation() - origin;
+		const SDL_Point center{ (int)origin.x, (int)origin.y };
+
+		SDL_Rect src;
+		src.x = source.x;
+		src.y = source.y;
+		src.w = source.w;
+		src.h = source.h;
+
+		SDL_Rect dest;
+		// Destination Position
+		dest.x = (int)pos.x;
+		dest.y = (int)pos.y;
+		// Scale
+		dest.w = (int)size.x;
+		dest.h = (int)size.y;
+
+		SDL_RendererFlip sdl_flip = (flipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
+
+		SDL_RenderCopyEx(_renderer, texture->_texture, &src, &dest, en::degrees(mx.get_rotation()), &center, sdl_flip);
+	}
+
+	void Renderer::Draw2(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& regist, bool flipH)
+	{
+		Vector2 size{ source.w, source.h };
+		size *= transform.scale;
 
 		Vector2 origin = size * regist;
 		Vector2 pos = transform.position - origin;
-		const SDL_Point center{ (int)origin.x, (int)origin.y };
+		const SDL_Point center{ (int) origin.x, (int) origin.y };
 
 		SDL_Rect src;
 		src.x = source.x;

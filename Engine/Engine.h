@@ -38,6 +38,7 @@
 #include "Components/TextComponent.h"
 #include "Components/SpriteAnimComponent.h"
 #include "Components/TilemapComponent.h"
+#include "Components/CameraComponent.h"
 
 #include "Components/CharacterComponent.h"
 

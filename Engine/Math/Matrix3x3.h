@@ -30,8 +30,8 @@ namespace en
 		{
 			return Vector2
 			{
-				(v.x * rows[0][0]) + (v.y * rows[0][1]) + (1.0f * rows[0][2]), // leave in 1.0f as a reminder of formula
-				(v.x * rows[1][0]) + (v.y * rows[1][1]) + (1.0f * rows[1][2])  // leave in 1.0f as a reminder of formula
+				v.x * rows[0][0] + v.y * rows[0][1] + 1.0f * rows[0][2], // leave in 1.0f as a reminder of formula
+				v.x * rows[1][0] + v.y * rows[1][1] + 1.0f * rows[1][2]  // leave in 1.0f as a reminder of formula
 			};
 		}
 
@@ -39,13 +39,13 @@ namespace en
 		{
 			Matrix3x3 r;
 
-			r[0][0] = (m[0][0] * rows[0][0]) + (m[1][0] * rows[0][1]) + (m[2][0] * rows[0][2]);
-			r[0][1] = (m[0][1] * rows[0][0]) + (m[1][1] * rows[0][1]) + (m[2][1] * rows[0][2]);
-			r[0][2] = (m[0][2] * rows[0][0]) + (m[1][2] * rows[0][1]) + (m[2][2] * rows[0][2]);
+			r[0][0] = m[0][0] * rows[0][0] + m[1][0] * rows[0][1] + m[2][0] * rows[0][2];
+			r[0][1] = m[0][1] * rows[0][0] + m[1][1] * rows[0][1] + m[2][1] * rows[0][2];
+			r[0][2] = m[0][2] * rows[0][0] + m[1][2] * rows[0][1] + m[2][2] * rows[0][2];
 
-			r[1][0] = (m[0][0] * rows[1][0]) + (m[1][0] * rows[1][1]) + (m[2][0] * rows[1][2]);
-			r[1][1] = (m[0][1] * rows[1][0]) + (m[1][1] * rows[1][1]) + (m[2][1] * rows[1][2]);
-			r[1][2] = (m[0][2] * rows[1][0]) + (m[1][2] * rows[1][1]) + (m[2][2] * rows[1][2]);
+			r[1][0] = m[0][0] * rows[1][0] + m[1][0] * rows[1][1] + m[2][0] * rows[1][2];
+			r[1][1] = m[0][1] * rows[1][0] + m[1][1] * rows[1][1] + m[2][1] * rows[1][2];
+			r[1][2] = m[0][2] * rows[1][0] + m[1][2] * rows[1][1] + m[2][2] * rows[1][2];
 
 			r[2][0] = (m[0][0] * rows[2][0]) + (m[1][0] * rows[2][1]) + (m[2][0] * rows[2][2]);
 			r[2][1] = (m[0][1] * rows[2][0]) + (m[1][1] * rows[2][1]) + (m[2][1] * rows[2][2]);
@@ -95,7 +95,7 @@ namespace en
 		// {sX, 0, 0}, {0, sY, 0}, (0, 0, 1)
 
 		mx[0][0] = scale.x;
-		mx[0][1] = scale.y;
+		mx[1][1] = scale.y;
 
 		return mx;
 	}
@@ -107,7 +107,7 @@ namespace en
 		// {sX, 0}, {0, sY}
 
 		mx[0][0] = scale;
-		mx[0][1] = scale;
+		mx[1][1] = scale;
 
 		return mx;
 	}

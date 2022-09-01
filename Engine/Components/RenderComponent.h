@@ -16,10 +16,10 @@ namespace en
 		virtual void Draw(Renderer& renderer) = 0;
 
 		virtual Rect& _Source() { return _source; }
-		void Flip(bool flip = true) { _flipH = flip; }
+		void Flip(bool flip = false) { _flipH = flip; }
 		bool _Flip() { return _flipH; }
 	private:
-		Rect _source {1, 1, 1, 1};
+		Rect _source;
 		bool _flipH = false;
 		Vector2 _registration { 0.5f, 0.5f };
 

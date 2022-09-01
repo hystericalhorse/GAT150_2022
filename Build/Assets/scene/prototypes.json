@@ -5,6 +5,7 @@
 	  "type": "Actor",
 	  "name": "Coin",
 	  "prototype": true,
+	  "lifespan": 5.0,
 	  "transform":
 	  {
 		"position": [ 400.0, 300.0 ],

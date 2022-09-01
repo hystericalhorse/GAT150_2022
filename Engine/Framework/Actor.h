@@ -49,6 +49,8 @@ namespace en
 		const std::string& getTag() { return _tag; }
 		void setTag(const std::string& string) { this->_tag = string; }
 
+		float& _Lifespan() { return _lifespan; }
+
 		template<typename T>
 		inline T* getComponent()
 		{

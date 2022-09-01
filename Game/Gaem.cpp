@@ -1,5 +1,4 @@
 #include "Gaem.h"
-
 #include "GameComponents/EnemyComponent.h"
 
 void Gaem::Init()
@@ -9,7 +8,7 @@ void Gaem::Init()
 	_scene = std::make_unique<en::Scene>();
 
 	rapidjson::Document document;
-	std::vector<std::string> sceneNames = { "scene/decoration.json", "scene/prototypes.json", "scene/tilemap.json", "scene/players.json" };
+	std::vector<std::string> sceneNames = { "scene/decoration.json", "scene/prototypes.json", "scene/tilemap.json", "scene/players.json", "scene/level.json" };
 
 	for (auto& object : sceneNames)
 	{

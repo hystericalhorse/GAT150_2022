@@ -5,10 +5,30 @@
 #include "Renderer/Texture.h"
 #include "Math/Rect.h"
 
+#include <map>
+#include <memory>
+
 namespace en
 {
 	class SpriteAnimComponent : public RenderComponent
 	{
+	public:
+		struct Sequence
+		{
+			std::string name;
+
+			float fps = 0;
+			int num_columns = 1;
+			int num_rows = 1;
+
+			int start_frame = 0;
+			int end_frame = 0;
+
+			bool loop = true;
+
+			std::shared_ptr<en::Texture> texture = std::make_shared<en::Texture>();
+		};
+
 	public:
 		SpriteAnimComponent() = default;
 
@@ -21,10 +41,11 @@ namespace en
 		virtual bool Read(const rapidjson::Value& value) override;
 
 		Rect& _Source() override;
+		void setSequence(const std::string& name);
 
 	public:
 		float fps = 0.0f;
-		int columns, rows = 0;
+		int columns, rows = 1;
 		
 		int start_frame = 0, end_frame = 0;
 		int frame = 0;
@@ -32,6 +53,9 @@ namespace en
 
 		std::shared_ptr<en::Texture> _texture = std::make_shared<en::Texture>();
 		Rect source;
+
+		std::map<std::string, Sequence> _sequences;
+		Sequence* _sequence = nullptr;
 
 	};
 }

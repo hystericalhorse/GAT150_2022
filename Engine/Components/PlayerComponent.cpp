@@ -35,11 +35,21 @@ namespace en
 			if (physics) physics->Force(Vector2::up * _jump_multiplier * 100);
 		}
 
-		auto render = (_owner->getComponent<en::RenderComponent>());
-		if (render)
+		auto camera = _owner->getScene()->getActor("Camera");
+		if (camera)
 		{
-			if (_direction == en::Vector2::right) render->Flip(false);
-			if (_direction == en::Vector2::left) render->Flip(true);
+			camera->_Transform().position = en::lerp(camera->_Transform().position, _owner->_Transform().position, 2 * en::__time.ci_time);
+		}
+
+		auto anim = (_owner->getComponent<en::SpriteAnimComponent>());
+		if (anim)
+		{
+			//if (_direction.x != 0) anim->Flip(_direction.x < 0);
+
+			if (std::fabs(_direction.x) > 0)
+			{
+				anim->setSequence("running");
+			}
 		}
 	}
 
