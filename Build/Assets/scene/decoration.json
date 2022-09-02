@@ -7,29 +7,31 @@
 	  "tag": "Background",
 	  "transform":
 	  {
-		"position": [ 400.0, 300.0 ],
-		"scale": [ 1.0, 1.0],
+		"position": [ 1600.0, 0.0 ],
+		"scale": [ 4.0, 4.0],
 		"rotation": 0.0
 	  },
 	  "components":
 	  [
 	    {
 		  "type": "SpriteComponent",
+		  "default_sequence": "default",
+		  
 		  "texture": "image/background.png"
 	    }
 	  ]
     },
 	{
 	  "type": "Actor",
-	  "name": "Music",
+	  "name": "Ambience",
 	  "components":
 	  [
 	    {
 		  "type": "AudioComponent",
-		  "sound_name": "audio/five_hours.mp3",
-		  "pitch": 2.0,
+		  "sound_name": "audio/fluorescent_light_buzz.wav",
+		  "pitch": 1.0,
 		  "volume": 0.2,
-		  "play_on_start": false,
+		  "play_on_start": true,
 		  "loop": true
 		}
 	  ]
@@ -39,7 +41,7 @@
 	  "name": "Title",
 	  "transform":
 	  {
-		"position": [ 400.0, 300.0 ],
+		"position": [ 400.0, 200.0 ],
 		"scale": [ 1.0, 1.0 ],
 		"rotation": 0.0
 	  },
@@ -47,10 +49,10 @@
 	  [
 	    {
 		  "type": "TextComponent",
-		  "text": "hello, world.",
+		  "text": "Yellow Walls",
 		  "font_name": "font/VCR_OSD_MONO.ttf",
 		  "fontSize": 24,
-		  "registration": [ 0.0, 0.5 ],
+		  "registration": [ 0.0, 0.0 ],
 		  "color": [ 255, 255, 255, 255]
 		}
 	  ]

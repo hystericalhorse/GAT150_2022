@@ -37,8 +37,8 @@ namespace en
 		PhysicsSystem::CollisionDat data;
 		Vector2 scale_offset { 0.5f, 0.5f };
 
-		actorptr _enterFunction = NULL;
-		actorptr _exitFunction = NULL;
+		actorptr _enterFunction;
+		actorptr _exitFunction;
 
 	};
 }

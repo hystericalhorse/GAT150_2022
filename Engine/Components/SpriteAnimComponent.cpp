@@ -19,7 +19,7 @@ namespace en
 
 	void SpriteAnimComponent::Draw(Renderer& renderer)
 	{
-		renderer.Draw(_sequence->texture, _Source(), _owner->_Transform(), _Flip());
+		renderer.Draw(_sequence->texture, _Source(), _owner->_Transform());
 	}
 
 	bool SpriteAnimComponent::Write(const rapidjson::Value& value) const

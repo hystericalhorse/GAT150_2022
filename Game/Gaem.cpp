@@ -8,7 +8,7 @@ void Gaem::Init()
 	_scene = std::make_unique<en::Scene>();
 
 	rapidjson::Document document;
-	std::vector<std::string> sceneNames = { "scene/decoration.json", "scene/prototypes.json", "scene/tilemap.json", "scene/players.json", "scene/level.json" };
+	std::vector<std::string> sceneNames = { "scene/decoration.json", "scene/prototypes.json", "scene/tilemap2.json", "scene/level.json", "scene/players.json"};
 
 	for (auto& object : sceneNames)
 	{
@@ -20,20 +20,24 @@ void Gaem::Init()
 	en::__eventmanager.Subscribe("EVT_EXAMPLE", std::bind(&Gaem::exampleEvent, this, std::placeholders::_1));
 
 	_scene->Init();
+	_gamestate_timer = 5.0f;
 }
 
 void Gaem::Shutdown()
 {
-	_scene->Remove();
+	_scene->Shutdown();
 }
 
 void Gaem::Update()
 {
+	rapidjson::Document document;
+	bool success;
+
 	switch (_gamestate)
 	{
 	case Gaem::gameState::GameTitle:
-		
-		if (en::__inputsys.getKeyState(en::key_space) == en::InputSystem::KeyState::PRESSED)
+		_gamestate_timer -= en::__time.ci_time;
+		if (_gamestate_timer <= 0)
 		{
 			auto component = _scene->getActor("Title");
 			if (component) component->toggleActive();
@@ -42,14 +46,19 @@ void Gaem::Update()
 		}
 		break;
 	case Gaem::gameState::GameStart:
-
-		for (int i = 0; i < 2; i++)
+		
 		{
-			auto actor = en::Factory::Instance().Retrieve<en::Actor>("Coin");
-			actor->_Transform().position = { en::random(400), 100};
-			actor->Init();
+		auto actor = en::Factory::Instance().Retrieve<en::Actor>("Battery");
+		actor->_Transform().position = { 1000, 500 };
+		actor->Init();
+		
+		_scene->addActor(std::move(actor));
 
-			_scene->addActor(std::move(actor));
+		actor = en::Factory::Instance().Retrieve<en::Actor>("Candy");
+		actor->_Transform().position = { 200, 500 };
+		actor->Init();
+
+		_scene->addActor(std::move(actor));
 		}
 
 		_gamestate = gameState::Game;

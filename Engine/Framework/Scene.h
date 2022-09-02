@@ -29,7 +29,7 @@ namespace en
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
-		void addActor(std::unique_ptr<Actor> actor);
+		void addActor(std::unique_ptr<Actor> actor, bool back = true);
 		void Remove() {}
 
 		template<typename T = Actor>

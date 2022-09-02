@@ -11,8 +11,8 @@
              300.0 
          ], 
          "scale":[ 
-             1.0, 
-             1.0
+             2.0, 
+             2.0
          ], 
          "rotation": 0
 		},
@@ -20,7 +20,7 @@
 		[ 
 			{ 
 			  "type":"CameraComponent", 
-			  "viewport_size": [800.0, 600.0] 
+			  "viewport_size": [800.0, 600.0]
 			}
 		]
 	}

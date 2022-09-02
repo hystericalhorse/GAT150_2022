@@ -6,15 +6,19 @@ namespace en
 	{
 		en::Engine::Instance().Register();
 
+		en::__eventmanager.Init();
+
 		en::__renderer.Init();
 		en::__inputsys.Init();
 		en::__audiosys.Init();
-		en::__registry.Init();
 		en::__physics.Init();
+		en::__registry.Init();
 	}
 
 	void Update()
 	{
+		en::__eventmanager.Update();
+
 		en::__audiosys.Update();
 		en::__inputsys.Update();
 		en::__time.Tick();
@@ -28,8 +32,10 @@ namespace en
 		en::__audiosys.Shutdown();
 		en::__renderer.Shutdown();
 		en::__inputsys.Shutdown();
-		en::__registry.Shutdown();
 		en::__physics.Shutdown();
+		en::__registry.Shutdown();
+
+		en::__eventmanager.Shutdown();
 	}
 
 	void Engine::Register()
@@ -40,11 +46,11 @@ namespace en
 		REGISTER_CLASS(PhysicsComponent);
 		REGISTER_CLASS(RigidBodPhysicsComponent);
 		REGISTER_CLASS(CollisionComponent);
+		REGISTER_CLASS(TilemapComponent);
 		REGISTER_CLASS(PlayerComponent);
 		REGISTER_CLASS(SpriteComponent);
 		REGISTER_CLASS(SpriteAnimComponent);
 		REGISTER_CLASS(TextComponent);
-		REGISTER_CLASS(TilemapComponent);
 		REGISTER_CLASS(CameraComponent);
 	}
 

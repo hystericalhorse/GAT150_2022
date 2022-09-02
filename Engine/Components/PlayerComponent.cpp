@@ -8,44 +8,80 @@
 
 namespace en
 {
+	PlayerComponent::~PlayerComponent()
+	{
+		CharacterComponent::~CharacterComponent();
+	}
+
 	void PlayerComponent::Init()
 	{
 		CharacterComponent::Init();
+		_gametime = 10.0;
 	}
 	
 	void PlayerComponent::Update()
 	{
+		_gametime -= en::__time.ci_time;
+		if (_gametime <= 0)
+		{
+			
+			_owner->getComponent<en::SpriteAnimComponent>()->_sequence = &(_owner->getComponent<en::SpriteAnimComponent>()->_sequences["blinking"]);
+			if (!blinking) 
+			{
+				_gametime = en::__time.ci_time * 12;
+				blinking = true;
+			}
+			else
+			{
+				_owner->getComponent<en::SpriteAnimComponent>()->_sequence = &(_owner->getComponent<en::SpriteAnimComponent>()->_sequences["idle"]);
+				_gametime = en::randomf(4.0, 20.0);
+				blinking = false;
+			}
+		}
+
+		std::cout << std::to_string(_gametime) << std::endl;
+
+		if (_groundcount > 0) _jumpcount = 0;
+
 		auto physics = (_owner->getComponent<en::PhysicsComponent>());
+
+		float modi = (_groundcount > 0) ? 1 : 0.2f;
 
 		if (en::__inputsys.getKeyDown(en::key_left))
 		{
 			_direction = en::Vector2::left;
-			if (physics) physics->Force(Vector2::left * _speed);
+			if (physics) physics->Force(Vector2::left * _speed * modi);
 		}
 
 		if (en::__inputsys.getKeyDown(en::key_right))
 		{
 			_direction = en::Vector2::right;
-			if (physics) physics->Force(Vector2::right * _speed);
+			if (physics) physics->Force(Vector2::right * _speed * modi);
 		}
 
 		if (en::__inputsys.getKeyState(en::key_up) == en::InputSystem::KeyState::PRESSED)
 		{
-			_direction = en::Vector2::up;
-			if (physics) physics->Force(Vector2::up * _jump_multiplier * 100);
+			if (_groundcount >= 0)
+			{
+				if (_jumpcount == 0)
+				{
+					_direction = en::Vector2::up;
+					if (physics) physics->Force(Vector2::up * _jump_multiplier * 100);
+					_jumpcount++;
+				}
+			}
+			
 		}
 
 		auto camera = _owner->getScene()->getActor("Camera");
 		if (camera)
 		{
-			camera->_Transform().position = en::lerp(camera->_Transform().position, _owner->_Transform().position, 2 * en::__time.ci_time);
+			camera->_Transform().position = en::lerp(camera->_Transform().position, _owner->_Transform().position, 1.0);
 		}
 
 		auto anim = (_owner->getComponent<en::SpriteAnimComponent>());
 		if (anim)
 		{
-			//if (_direction.x != 0) anim->Flip(_direction.x < 0);
-
 			if (std::fabs(_direction.x) > 0)
 			{
 				anim->setSequence("running");
@@ -55,7 +91,7 @@ namespace en
 
 	void PlayerComponent::OnCollisionBegin(Actor* other)
 	{
-		if (other->getName() == "Coin")
+		if (other->getTag() == "Pickup")
 		{
 			Event event;
 			event.name = "EVT_EXAMPLE";
@@ -63,13 +99,22 @@ namespace en
 
 			en::__eventmanager.Notify(event);
 
+			other->getComponent<en::AudioComponent>()->Play();
 			other->Destroy();
+		}
+
+		if (other->getTag() == "Ground")
+		{
+			_groundcount++;
 		}
 	}
 
 	void PlayerComponent::OnCollisionEnd(Actor* other)
 	{
-		// TODO
+		if (other->getTag() == "Ground")
+		{
+			_groundcount--;
+		}
 	}
 
 	bool PlayerComponent::Write(const rapidjson::Value& value) const

@@ -59,12 +59,31 @@ namespace en
 
 	void CollisionComponent::OnCollisionBegin(Actor* other)
 	{
-		if (_enterFunction) _enterFunction(other);
+		if (!other) return;
+
+		try
+		{
+			if (_enterFunction) _enterFunction(other);
+		}
+		catch (...)
+		{
+			LOG("ERROR: Collision error.");
+		}
 	}
 
 	void CollisionComponent::OnCollisionEnd(Actor* other)
 	{
+		if (!other) return;
+
 		// This causes an Access Reading Violation during application closing.
-		// if (_exitFunction) _exitFunction(other);
+		try
+		{
+			if (_exitFunction) _exitFunction(other);
+		}
+		catch (...)
+		{
+			LOG("ERROR: Collision error.");
+		}
+		
 	}
 }

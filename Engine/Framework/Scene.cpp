@@ -27,6 +27,7 @@ namespace en
 	{
 		for (auto& actor : _actors)
 		{
+			actor->toggleActive(false);
 			actor->Destroy();
 		}
 
@@ -86,9 +87,9 @@ namespace en
 		return true;
 	}
 
-	void Scene::addActor(std::unique_ptr<Actor> actor)
+	void Scene::addActor(std::unique_ptr<Actor> actor, bool back)
 	{
 		actor->_scene = this;
-		_actors.push_back(std::move(actor));
+		(back) ? _actors.push_back(std::move(actor)) : _actors.push_front(std::move(actor));
 	}
 }

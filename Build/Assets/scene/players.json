@@ -7,7 +7,7 @@
       "tag": "Player",
       "transform":
 	  {
-        "position": [ 400.0, 300.0 ],
+        "position": [ 600.0, 500.0 ],
         "scale": [ 2.0, 2.0 ],
         "rotation": 0.0
       },
@@ -20,17 +20,26 @@
         },
 		{
 			"type": "SpriteAnimComponent",
-			"default_sequence": "running",
+			"default_sequence": "idle",
 			"sequences":
 			[
 				{
-				  "name": "running",
+				  "name": "idle",
+				  "fps": 12.0,
+				  "columns": 4,
+				  "rows": 1,
+				  "start_frame": 1,
+				  "end_frame": 1,
+				  "texture": "image/player.png"
+				},
+				{
+				  "name": "blinking",
 				  "fps": 12.0,
 				  "columns": 4,
 				  "rows": 1,
 				  "start_frame": 1,
 				  "end_frame": 4,
-				  "texture": "image/s_wolf_running.png"
+				  "texture": "image/player.png"
 				}
 			]
 		},

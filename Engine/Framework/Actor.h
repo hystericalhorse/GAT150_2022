@@ -64,7 +64,7 @@ namespace en
 		}
 		
 		friend class Scene;
-	protected:
+	public:
 		bool _active = true;
 		bool _destroyOnInactive = false;
 		bool _living = true;

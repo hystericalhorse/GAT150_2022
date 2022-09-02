@@ -7,8 +7,8 @@
 			"prototype":true,
 			"transform":{
 				"scale":[
-					4.0,
-					4.0
+					2.0,
+					2.0
 				]
 			},
 			"components":[
@@ -27,12 +27,12 @@
 		{
 			"type":"Actor",
 			"name":"br_tile1",
-			"tag":"Wall",
+			"tag":"Ground",
 			"prototype":true,
 			"transform":{
 				"scale":[
-					4.0,
-					4.0
+					2.0,
+					2.0
 				]
 			},
 			"components":[
@@ -41,11 +41,243 @@
 					"texture":"image/backrooms_tileset.png",
 					"source":[
 						0,
-						32,
+						64,
 						32,
 						32
 					]
+				},
+				{
+					"type":"RigidBodPhysicsComponent",
+					"is_dynamic": false
+				},
+				{
+					"type": "CollisionComponent",
+					"size": [64.0, 64.0]
 				}
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"br_tile2",
+			"tag":"Buffer",
+			"prototype":true,
+			"transform":{
+				"scale":[
+					2.0,
+					2.0
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"texture":"image/backrooms_tileset.png",
+					"source":[
+						0,
+						96,
+						32,
+						32
+					]
+				}				
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"br_tile3",
+			"tag":"Ceiling",
+			"prototype":true,
+			"transform":{
+				"scale":[
+					2.0,
+					2.0
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"texture":"image/backrooms_tileset.png",
+					"source":[
+						64,
+						64,
+						32,
+						32
+					]
+				}				
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"br_tile4",
+			"tag":"Buffer",
+			"prototype":true,
+			"transform":{
+				"scale":[
+					2.0,
+					2.0
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"texture":"image/backrooms_tileset.png",
+					"source":[
+						32,
+						96,
+						32,
+						32
+					]
+				},
+				{
+					"type":"RigidBodPhysicsComponent",
+					"is_dynamic": false
+				},
+				{
+					"type": "CollisionComponent",
+					"size": [64.0, 64.0]
+				}				
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"br_tile5",
+			"tag":"Ceiling",
+			"prototype":true,
+			"transform":{
+				"scale":[
+					2.0,
+					2.0
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"texture":"image/backrooms_tileset.png",
+					"source":[
+						64,
+						96,
+						32,
+						32
+					]
+				}			
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"br_tile6",
+			"tag":"Buffer",
+			"prototype":true,
+			"transform":{
+				"scale":[
+					2.0,
+					2.0
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"texture":"image/backrooms_tileset.png",
+					"source":[
+						96,
+						64,
+						32,
+						32
+					]
+				},
+				{
+					"type":"RigidBodPhysicsComponent",
+					"is_dynamic": false
+				},
+				{
+					"type": "CollisionComponent",
+					"size": [64.0, 64.0]
+				}				
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"br_tile7",
+			"tag":"Buffwe",
+			"prototype":true,
+			"transform":{
+				"scale":[
+					2.0,
+					2.0
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"texture":"image/backrooms_tileset.png",
+					"source":[
+						96,
+						96,
+						32,
+						32
+					]
+				},
+				{
+					"type":"RigidBodPhysicsComponent",
+					"is_dynamic": false
+				},
+				{
+					"type": "CollisionComponent",
+					"size": [64.0, 64.0]
+				}				
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"br_tile8",
+			"tag":"Buffer",
+			"prototype":true,
+			"transform":{
+				"scale":[
+					2.0,
+					2.0
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"texture":"image/backrooms_tileset.png",
+					"source":[
+						64,
+						96,
+						32,
+						32
+					]
+				},
+				{
+					"type":"RigidBodPhysicsComponent",
+					"is_dynamic": false
+				},
+				{
+					"type": "CollisionComponent",
+					"size": [64.0, 64.0]
+				}				
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"br_tile9",
+			"tag":"Void",
+			"prototype":true,
+			"transform":{
+				"scale":[
+					2.0,
+					2.0
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"texture":"image/backrooms_tileset.png",
+					"source":[
+						64,
+						96,
+						32,
+						32
+					]
+				}				
 			]
 		},
 		{
@@ -53,28 +285,31 @@
 			"name":"World",
 			"transform":{
 				"position":[
-					32.0,
-					32.0
+					0.0,
+					0.0
 				]
 			},
 			"components":[
 				{
 					"type":"TilemapComponent",
-					"num_columns": 13,
-					"num_rows": 10,
+					"num_columns": 34,
+					"num_rows": 13,
 					"size": [64.0, 64.0],
-					"tile_names": ["", "br_tile0", "br_tile1"],
+					"tile_names": ["", "br_tile0", "br_tile1", "br_tile2", "br_tile3", "br_tile4", "br_tile5", "br_tile6", "br_tile7", "br_tile8", "br_tile9"],
 					"tiles": [
-							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+							6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 9, 9, 9, 9, 9, 9,
+							6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 9, 9, 9, 9, 9, 9,
+							6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 9, 9, 9, 9, 9, 9,
+							6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 9, 9, 9, 9, 9, 9,
+							9, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 9, 9, 9, 9, 9, 9, 9,
+							7, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 8, 9, 9, 9, 9, 9, 9,
+							7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9,
+							7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9,
+							7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9,
+							7, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 8, 9, 9, 9, 9, 9, 9,
+							9, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 9, 9, 9, 9, 9, 9, 9,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 9, 9, 9, 9, 9
 							]
 				}    
 			]

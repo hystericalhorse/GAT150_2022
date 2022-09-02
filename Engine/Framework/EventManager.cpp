@@ -28,7 +28,16 @@ namespace en
 
 	void EventManager::Unsubscribe(const std::string& eventname, GameObject* reciever)
 	{
-		// TODO
+		auto& observers = _events[eventname];
+
+		for (auto iter = observers.begin(); iter != observers.end(); iter++)
+		{
+			if (iter->reciever == reciever)
+			{
+				observers.erase(iter);
+				break;
+			}
+		}
 	}
 
 	void EventManager::Notify(const Event& event)

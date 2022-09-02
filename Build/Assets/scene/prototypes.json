@@ -3,9 +3,10 @@
   [
 	{
 	  "type": "Actor",
-	  "name": "Coin",
+	  "name": "Battery",
+	  "tag": "Pickup",
 	  "prototype": true,
-	  "lifespan": 5.0,
+	  "lifespan": 0.0,
 	  "transform":
 	  {
 		"position": [ 400.0, 300.0 ],
@@ -15,8 +16,20 @@
 	  "components":
 	  [
 	    {
-		  "type": "SpriteComponent",
-		  "texture": "image/cion.png"
+		  "type": "SpriteAnimComponent",
+		  "default_sequence": "floating",
+		  "sequences":
+			[
+				{
+				  "name": "floating",
+				  "fps": 12.0,
+				  "columns": 4,
+				  "rows": 1,
+				  "start_frame": 1,
+				  "end_frame": 4,
+				  "texture": "image/battery.png"
+				}
+			]
 		},
 		{
 			"type": "RigidBodPhysicsComponent",
@@ -32,34 +45,56 @@
 		  "density": 1.0,
 		  "friction": 0.0,
 		  "restitution": 	0.3,
+		  "size": [ 24.0, 32.0 ],
 		  "is_trigger": false
+		},
+		{
+			"type": "AudioComponent",
+			"sound_name": "audio/pickup.wav",
+			"pitch": 1.0,
+			"volume": 0.2,
+			"play_on_start": false,
+			"loop": false
 		}
 	  ]
 	},
-	{
+{
 	  "type": "Actor",
-	  "name": "Enemy",
-	  "tag": "Enemy",
+	  "name": "Candy",
+	  "tag": "Pickup",
 	  "prototype": true,
+	  "lifespan": 0.0,
 	  "transform":
 	  {
 		"position": [ 400.0, 300.0 ],
-		"scale": [ 0.8, 0.8 ],
+		"scale": [ 1.5, 1.5 ],
 		"rotation": 0.0
 	  },
 	  "components":
 	  [
 	    {
-		  "type": "SpriteComponent",
-		  "texture": "image/enemy.png"
+		  "type": "SpriteAnimComponent",
+		  "default_sequence": "floating",
+		  "sequences":
+			[
+				{
+				  "name": "floating",
+				  "fps": 12.0,
+				  "columns": 4,
+				  "rows": 1,
+				  "start_frame": 1,
+				  "end_frame": 4,
+				  "texture": "image/candy.png"
+				}
+			]
 		},
 		{
 			"type": "RigidBodPhysicsComponent",
 			"velocity": [ 0.0, 0.0 ],
 			"acceleration": [ 0.0, 0.0 ],
-			"damping": 0.7,
+			"damping": 0.99,
 			"gravity_scale": 1.0,
-			"constrain_rotation": true,
+			"constrain_rotation": false,
 			"is_dynamic": true
 		},
 		{
@@ -67,11 +102,16 @@
 		  "density": 1.0,
 		  "friction": 0.0,
 		  "restitution": 	0.3,
+		  "size": [ 24.0, 32.0 ],
 		  "is_trigger": false
-		}, 
+		},
 		{
-			"type": "EnemyComponent",
-			"speed": 10.0
+			"type": "AudioComponent",
+			"sound_name": "audio/pickup.wav",
+			"pitch": 1.0,
+			"volume": 0.2,
+			"play_on_start": false,
+			"loop": false
 		}
 	  ]
 	}
